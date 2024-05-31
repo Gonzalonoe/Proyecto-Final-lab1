@@ -93,9 +93,4 @@ public class Pasajero {
     public String toString() {
         return nombre+", "+apellido+","+dni+", "+correo+", "+telefono+", "; //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
-    
 }
