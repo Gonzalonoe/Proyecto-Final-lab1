@@ -4,36 +4,36 @@ import java.time.LocalTime;
 
 public class Rutas {
 
-    private int id_Rutas;
+    private int idRutas;
     private String origen;
     private String destino;
-    private LocalTime duracion_estimada;
+    private LocalTime duracionestimada;
     private boolean estado;
 
     public Rutas() {
     }
 
-    public Rutas(int id_Rutas, String origen, String destino, LocalTime duracion_estimada, boolean estado) {
-        this.id_Rutas = id_Rutas;
+    public Rutas(int id_Rutas, String origen, String destino, LocalTime duracionestimada, boolean estado) {
+        this.idRutas = id_Rutas;
         this.origen = origen;
         this.destino = destino;
-        this.duracion_estimada = duracion_estimada;
+        this.duracionestimada = duracionestimada;
         this.estado = estado;
     }
 
-    public Rutas(String origen, String destino, LocalTime duracion_estimada, boolean estado) {
+    public Rutas(String origen, String destino, LocalTime duracionestimada, boolean estado) {
         this.origen = origen;
         this.destino = destino;
-        this.duracion_estimada = duracion_estimada;
+        this.duracionestimada = duracionestimada;
         this.estado = estado;
     }
 
-    public int getId_Rutas() {
-        return id_Rutas;
+    public int getIdRutas() {
+        return idRutas;
     }
 
-    public void setId_Rutas(int id_Rutas) {
-        this.id_Rutas = id_Rutas;
+    public void setIdRutas(int idRutas) {
+        this.idRutas = idRutas;
     }
 
     public String getOrigen() {
@@ -52,12 +52,12 @@ public class Rutas {
         this.destino = destino;
     }
 
-    public LocalTime getDuracion_estimada() {
-        return duracion_estimada;
+    public LocalTime getDuracionestimada() {
+        return duracionestimada;
     }
 
-    public void setDuracion_estimada(LocalTime duracion_estimada) {
-        this.duracion_estimada = duracion_estimada;
+    public void setDuracionestimada(LocalTime duracionestimada) {
+        this.duracionestimada = duracionestimada;
     }
 
     public boolean isEstado() {
@@ -70,6 +70,6 @@ public class Rutas {
 
     @Override
     public String toString() {
-        return "Rutas{" + "id_Rutas=" + id_Rutas + ", origen=" + origen + ", destino=" + destino + ", duracion_estimada=" + duracion_estimada + ", estado=" + estado + '}';
+        return "Rutas{" + "id_Rutas=" + idRutas + ", origen=" + origen + ", destino=" + destino + ", duracionestimada=" + duracionestimada + ", estado=" + estado + '}';
     }
 }

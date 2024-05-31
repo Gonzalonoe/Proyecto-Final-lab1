@@ -9,31 +9,31 @@ public class Pasaje {
     private int idPasajero;
     private int idColectivo;
     private int idRuta;
-    private LocalDate fechaViaje;
-    private LocalTime horaViaje;
+    private LocalDate fechaviaje;
+    private LocalTime horaviaje;
     private int asiento;
     private double precio;
 
     public Pasaje() {
     }
 
-    public Pasaje(int idPasaje, int idPasajero, int idColectivo, int idRuta, LocalDate fechaViaje, LocalTime horaViaje, int asiento, double precio) {
+    public Pasaje(int idPasaje, int idPasajero, int idColectivo, int idRuta, LocalDate fechaviaje, LocalTime horaviaje, int asiento, double precio) {
         this.idPasaje = idPasaje;
         this.idPasajero = idPasajero;
         this.idColectivo = idColectivo;
         this.idRuta = idRuta;
-        this.fechaViaje = fechaViaje;
-        this.horaViaje = horaViaje;
+        this.fechaviaje = fechaviaje;
+        this.horaviaje = horaviaje;
         this.asiento = asiento;
         this.precio = precio;
     }
 
-    public Pasaje(int idPasajero, int idColectivo, int idRuta, LocalDate fechaViaje, LocalTime horaViaje, int asiento, double precio) {
+    public Pasaje(int idPasajero, int idColectivo, int idRuta, LocalDate fechaviaje, LocalTime horaviaje, int asiento, double precio) {
         this.idPasajero = idPasajero;
         this.idColectivo = idColectivo;
         this.idRuta = idRuta;
-        this.fechaViaje = fechaViaje;
-        this.horaViaje = horaViaje;
+        this.fechaviaje = fechaviaje;
+        this.horaviaje = horaviaje;
         this.asiento = asiento;
         this.precio = precio;
     }
@@ -70,20 +70,20 @@ public class Pasaje {
         this.idRuta = idRuta;
     }
 
-    public LocalDate getFechaViaje() {
-        return fechaViaje;
+    public LocalDate getFechaviaje() {
+        return fechaviaje;
     }
 
-    public void setFechaViaje(LocalDate fechaViaje) {
-        this.fechaViaje = fechaViaje;
+    public void setFechaviaje(LocalDate fechaviaje) {
+        this.fechaviaje = fechaviaje;
     }
 
     public LocalTime getHoraViaje() {
-        return horaViaje;
+        return horaviaje;
     }
 
-    public void setHoraViaje(LocalTime horaViaje) {
-        this.horaViaje = horaViaje;
+    public void setHoraviaje(LocalTime horaviaje) {
+        this.horaviaje = horaviaje;
     }
 
     public int getAsiento() {
@@ -104,7 +104,7 @@ public class Pasaje {
 
     @Override
     public String toString() {
-        return "Pasaje{" + "idPasaje=" + idPasaje + ", idPasajero=" + idPasajero + ", idColectivo=" + idColectivo + ", idRuta=" + idRuta + ", fechaViaje=" + fechaViaje + ", horaViaje=" + horaViaje + ", asiento=" + asiento + ", precio=" + precio + '}';
+        return "Pasaje{" + "idPasaje=" + idPasaje + ", idPasajero=" + idPasajero + ", idColectivo=" + idColectivo + ", idRuta=" + idRuta + ", fechaviaje=" + fechaviaje + ", horaviaje=" + horaviaje + ", asiento=" + asiento + ", precio=" + precio + '}';
     }
     
     

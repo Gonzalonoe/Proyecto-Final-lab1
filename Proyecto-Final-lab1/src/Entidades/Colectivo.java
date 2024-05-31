@@ -12,8 +12,8 @@ public class Colectivo {
     public Colectivo() {
     }
 
-    public Colectivo(int id_Colectivo, String matricula, String marca, String modelo, int capacidad, boolean estado) {
-        this.idColectivo = id_Colectivo;
+    public Colectivo(int idColectivo, String matricula, String marca, String modelo, int capacidad, boolean estado) {
+        this.idColectivo = idColectivo;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -29,12 +29,12 @@ public class Colectivo {
         this.estado = estado;
     }
 
-    public int getId_Colectivo() {
+    public int getIdColectivo() {
         return idColectivo;
     }
 
-    public void setId_Colectivo(int id_Colectivo) {
-        this.idColectivo = id_Colectivo;
+    public void setIdColectivo(int idColectivo) {
+        this.idColectivo = idColectivo;
     }
 
     public String getMatricula() {
@@ -79,7 +79,7 @@ public class Colectivo {
 
     @Override
     public String toString() {
-        return "Colectivo{" + "id_Colectivo=" + idColectivo + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", capacidad=" + capacidad + ", estado=" + estado + '}';
+        return "Colectivo{" + "idColectivo=" + idColectivo + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", capacidad=" + capacidad + ", estado=" + estado + '}';
     }
 
 }
