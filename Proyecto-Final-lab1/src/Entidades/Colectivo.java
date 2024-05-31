@@ -2,7 +2,7 @@ package Entidades;
 
 public class Colectivo {
 
-    private int id_Colectivo;
+    private int idColectivo;
     private String matricula;
     private String marca;
     private String modelo;
@@ -13,7 +13,7 @@ public class Colectivo {
     }
 
     public Colectivo(int id_Colectivo, String matricula, String marca, String modelo, int capacidad, boolean estado) {
-        this.id_Colectivo = id_Colectivo;
+        this.idColectivo = id_Colectivo;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -30,11 +30,11 @@ public class Colectivo {
     }
 
     public int getId_Colectivo() {
-        return id_Colectivo;
+        return idColectivo;
     }
 
     public void setId_Colectivo(int id_Colectivo) {
-        this.id_Colectivo = id_Colectivo;
+        this.idColectivo = id_Colectivo;
     }
 
     public String getMatricula() {
@@ -79,7 +79,7 @@ public class Colectivo {
 
     @Override
     public String toString() {
-        return "Colectivo{" + "id_Colectivo=" + id_Colectivo + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", capacidad=" + capacidad + ", estado=" + estado + '}';
+        return "Colectivo{" + "id_Colectivo=" + idColectivo + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", capacidad=" + capacidad + ", estado=" + estado + '}';
     }
 
 }
