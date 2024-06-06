@@ -3,7 +3,7 @@ package Entidades;
 
 import java.time.LocalTime;
 
-public class Horarios {
+public class Horario {
     
     private int idHorario;
     private int idRuta;
@@ -11,16 +11,16 @@ public class Horarios {
     private LocalTime horallegada;
     private boolean estado;
     
-    public Horarios(){
+    public Horario(){
     }
     
-    public Horarios(LocalTime horasalida, LocalTime horallegada, boolean estado){
+    public Horario(LocalTime horasalida, LocalTime horallegada, boolean estado){
         this.horasalida = horasalida;
         this.horallegada = horallegada;
         this.estado = estado;
     }
     
-   public Horarios(int idHorario, int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado){
+   public Horario(int idHorario, int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado){
         this.idHorario = idHorario;
         this.idRuta = idRuta;
         this.horasalida = horasalida;
@@ -28,7 +28,7 @@ public class Horarios {
         this.estado = estado;
     }
    
-   public Horarios(int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado){
+   public Horario(int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado){
         this.idRuta = idRuta;
         this.horasalida = horasalida;
         this.horallegada = horallegada;
