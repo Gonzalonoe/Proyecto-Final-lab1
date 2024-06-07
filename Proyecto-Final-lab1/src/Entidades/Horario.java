@@ -1,34 +1,33 @@
-
 package Entidades;
 
 import java.time.LocalTime;
 
 public class Horario {
-    
+
     private int idHorario;
     private int idRuta;
     private LocalTime horasalida;
     private LocalTime horallegada;
     private boolean estado;
-    
-    public Horario(){
+
+    public Horario() {
     }
-    
-    public Horario(LocalTime horasalida, LocalTime horallegada, boolean estado){
+
+    public Horario(LocalTime horasalida, LocalTime horallegada, boolean estado) {
         this.horasalida = horasalida;
         this.horallegada = horallegada;
         this.estado = estado;
     }
-    
-   public Horario(int idHorario, int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado){
+
+    public Horario(int idHorario, int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado) {
         this.idHorario = idHorario;
         this.idRuta = idRuta;
         this.horasalida = horasalida;
         this.horallegada = horallegada;
         this.estado = estado;
     }
-   
-   public Horario(int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado){
+
+    public Horario(int idRuta, LocalTime horasalida, LocalTime horallegada, boolean estado) {
         this.idRuta = idRuta;
         this.horasalida = horasalida;
         this.horallegada = horallegada;
@@ -75,10 +74,8 @@ public class Horario {
         this.estado = estado;
     }
 
-   
-    
     @Override
     public String toString() {
-        return horasalida+", "+horallegada+","; //To change body of generated methods, choose Tools | Templates.
+        return horasalida + ", " + horallegada + ","; //To change body of generated methods, choose Tools | Templates.
     }
 }
