@@ -95,7 +95,7 @@ public class PasajeroData {
         Pasajero pasajero = null;
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, dni );
+            ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -117,7 +117,6 @@ public class PasajeroData {
         return pasajero;
 
     }
-    
 
     public Pasajero buscarporNombreApellido(String nombre, String apellido) {
         String sql = "SELECT idPasajero, nommbre, apellido, dni, correo, telefono FROM Pasajero WHERE nombre LIKE ? OR apellido LIKE ?";
@@ -126,8 +125,8 @@ public class PasajeroData {
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, "%" + nombre + "%");
-           ps.setString(2, "%" + apellido + "%");
-           ResultSet rs = ps.executeQuery();
+            ps.setString(2, "%" + apellido + "%");
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 pasajero = new Pasajero();
@@ -148,14 +147,14 @@ public class PasajeroData {
         return pasajero;
 
     }
-    
-    public List<Pasajero> listarPasajeros(){
+
+    public List<Pasajero> listarPasajeros() {
         String sql = "SELECT idPasajero, nommbre, apellido, DNI, correo, telefono FROM Pasajero";
         ArrayList<Pasajero> pasajeros = new ArrayList<>();
-        
+
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-           ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Pasajero pasajero = new Pasajero();
@@ -165,7 +164,7 @@ public class PasajeroData {
                 pasajero.setDni(rs.getInt("DNI"));
                 pasajero.setCorreo(rs.getString("Correo"));
                 pasajero.setTelefono(rs.getInt("Telefono"));
-                
+
                 pasajeros.add(pasajero);
 
             }
@@ -174,10 +173,7 @@ public class PasajeroData {
             JOptionPane.showMessageDialog(null, "Error al listar los pasajeros" + ex.getMessage());
         }
         return pasajeros;
-        
+
     }
-    
-    
-    
-    
+
 }
