@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Proyecto-Final-lab1">
+  <ClassDiagramComponents>
+    <Class name="Conexion" package="AccesoADatos" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="URL" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="DB" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="USUARIO" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="PASSWORD" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="connection" type="Connection" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getConnection" returnType="Connection" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="HorarioData" package="AccesoADatos" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="con" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="agregarHorario" returnType="void" visibility="public">
+          <Argument type="Horario" name="horario"/>
+        </Method>
+        <Method name="obtenerHorarios" returnType="List&lt;Horario&gt;" visibility="public">
+          <Argument type="int" name="idRuta"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PasajeroData" package="AccesoADatos" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="agregarPasajero" returnType="void" visibility="public">
+          <Argument type="Pasajero" name="pasajero"/>
+        </Method>
+        <Method name="modificarPasajero" returnType="void" visibility="public">
+          <Argument type="Pasajero" name="pasajero"/>
+        </Method>
+        <Method name="eliminarPasajero" returnType="void" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="busquedaporDNI" returnType="Pasajero" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="buscarporNombreApellido" returnType="Pasajero" visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="listarPasajeros" returnType="List&lt;Pasajero&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Colectivo" package="Entidades" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="idColectivo" type="int" visibility="private"/>
+        <Field name="matricula" type="String" visibility="private"/>
+        <Field name="marca" type="String" visibility="private"/>
+        <Field name="modelo" type="String" visibility="private"/>
+        <Field name="capacidad" type="int" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="idColectivo"/>
+          <Argument type="String" name="matricula"/>
+          <Argument type="String" name="marca"/>
+          <Argument type="String" name="modelo"/>
+          <Argument type="int" name="capacidad"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="matricula"/>
+          <Argument type="String" name="marca"/>
+          <Argument type="String" name="modelo"/>
+          <Argument type="int" name="capacidad"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdColectivo" returnType="int" visibility="public"/>
+        <Method name="setIdColectivo" returnType="void" visibility="public">
+          <Argument type="int" name="idColectivo"/>
+        </Method>
+        <Method name="getMatricula" returnType="String" visibility="public"/>
+        <Method name="setMatricula" returnType="void" visibility="public">
+          <Argument type="String" name="matricula"/>
+        </Method>
+        <Method name="getMarca" returnType="String" visibility="public"/>
+        <Method name="setMarca" returnType="void" visibility="public">
+          <Argument type="String" name="marca"/>
+        </Method>
+        <Method name="getModelo" returnType="String" visibility="public"/>
+        <Method name="setModelo" returnType="void" visibility="public">
+          <Argument type="String" name="modelo"/>
+        </Method>
+        <Method name="getCapacidad" returnType="int" visibility="public"/>
+        <Method name="setCapacidad" returnType="void" visibility="public">
+          <Argument type="int" name="capacidad"/>
+        </Method>
+        <Method name="isEstado" returnType="boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="boolean" name="estado"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Horario" package="Entidades" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="idHorario" type="int" visibility="private"/>
+        <Field name="ruta" type="Rutas" visibility="private"/>
+        <Field name="horasalida" type="LocalTime" visibility="private"/>
+        <Field name="horallegada" type="LocalTime" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="idHorario"/>
+          <Argument type="Rutas" name="ruta"/>
+          <Argument type="LocalTime" name="horasalida"/>
+          <Argument type="LocalTime" name="horallegada"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdHorario" returnType="int" visibility="public"/>
+        <Method name="setIdHorario" returnType="void" visibility="public">
+          <Argument type="int" name="idHorario"/>
+        </Method>
+        <Method name="getRuta" returnType="Rutas" visibility="public"/>
+        <Method name="setRuta" returnType="void" visibility="public">
+          <Argument type="Rutas" name="ruta"/>
+        </Method>
+        <Method name="getHorasalida" returnType="LocalTime" visibility="public"/>
+        <Method name="setHorasalida" returnType="void" visibility="public">
+          <Argument type="LocalTime" name="horasalida"/>
+        </Method>
+        <Method name="getHorallegada" returnType="LocalTime" visibility="public"/>
+        <Method name="setHorallegada" returnType="void" visibility="public">
+          <Argument type="LocalTime" name="horallegada"/>
+        </Method>
+        <Method name="isEstado" returnType="boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="boolean" name="estado"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Pasaje" package="Entidades" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="idPasaje" type="int" visibility="private"/>
+        <Field name="pasajero" type="Pasajero" visibility="private"/>
+        <Field name="colectivo" type="Colectivo" visibility="private"/>
+        <Field name="ruta" type="Rutas" visibility="private"/>
+        <Field name="fechaviaje" type="LocalDate" visibility="private"/>
+        <Field name="horaviaje" type="LocalTime" visibility="private"/>
+        <Field name="asiento" type="int" visibility="private"/>
+        <Field name="precio" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="idPasaje"/>
+          <Argument type="Pasajero" name="pasajero"/>
+          <Argument type="Colectivo" name="colectivo"/>
+          <Argument type="Rutas" name="ruta"/>
+          <Argument type="LocalDate" name="fechaviaje"/>
+          <Argument type="LocalTime" name="horaviaje"/>
+          <Argument type="int" name="asiento"/>
+          <Argument type="double" name="precio"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Pasajero" name="pasajero"/>
+          <Argument type="Colectivo" name="colectivo"/>
+          <Argument type="Rutas" name="ruta"/>
+          <Argument type="LocalDate" name="fechaviaje"/>
+          <Argument type="LocalTime" name="horaviaje"/>
+          <Argument type="int" name="asiento"/>
+          <Argument type="double" name="precio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdPasaje" returnType="int" visibility="public"/>
+        <Method name="setIdPasaje" returnType="void" visibility="public">
+          <Argument type="int" name="idPasaje"/>
+        </Method>
+        <Method name="getPasajero" returnType="Pasajero" visibility="public"/>
+        <Method name="setPasajero" returnType="void" visibility="public">
+          <Argument type="Pasajero" name="pasajero"/>
+        </Method>
+        <Method name="getColectivo" returnType="Colectivo" visibility="public"/>
+        <Method name="setColectivo" returnType="void" visibility="public">
+          <Argument type="Colectivo" name="colectivo"/>
+        </Method>
+        <Method name="getRuta" returnType="Rutas" visibility="public"/>
+        <Method name="setRuta" returnType="void" visibility="public">
+          <Argument type="Rutas" name="ruta"/>
+        </Method>
+        <Method name="getFechaviaje" returnType="LocalDate" visibility="public"/>
+        <Method name="setFechaviaje" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="fechaviaje"/>
+        </Method>
+        <Method name="getHoraviaje" returnType="LocalTime" visibility="public"/>
+        <Method name="setHoraviaje" returnType="void" visibility="public">
+          <Argument type="LocalTime" name="horaviaje"/>
+        </Method>
+        <Method name="getAsiento" returnType="int" visibility="public"/>
+        <Method name="setAsiento" returnType="void" visibility="public">
+          <Argument type="int" name="asiento"/>
+        </Method>
+        <Method name="getPrecio" returnType="double" visibility="public"/>
+        <Method name="setPrecio" returnType="void" visibility="public">
+          <Argument type="double" name="precio"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Pasajero" package="Entidades" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="idPasajero" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="dni" type="int" visibility="private"/>
+        <Field name="correo" type="String" visibility="private"/>
+        <Field name="telefono" type="int" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="String" name="correo"/>
+          <Argument type="int" name="telefono"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idPasajero"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="String" name="correo"/>
+          <Argument type="int" name="telefono"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdPassajero" returnType="int" visibility="public"/>
+        <Method name="setIdPassajero" returnType="void" visibility="public">
+          <Argument type="int" name="idPasajero"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="setApellido" returnType="void" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="getDni" returnType="int" visibility="public"/>
+        <Method name="setDni" returnType="void" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="getCorreo" returnType="String" visibility="public"/>
+        <Method name="setCorreo" returnType="void" visibility="public">
+          <Argument type="String" name="correo"/>
+        </Method>
+        <Method name="getTelefono" returnType="int" visibility="public"/>
+        <Method name="setTelefono" returnType="void" visibility="public">
+          <Argument type="int" name="telefono"/>
+        </Method>
+        <Method name="isEstado" returnType="boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="boolean" name="estado"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Rutas" package="Entidades" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="idRutas" type="int" visibility="private"/>
+        <Field name="origen" type="String" visibility="private"/>
+        <Field name="destino" type="String" visibility="private"/>
+        <Field name="duracionestimada" type="LocalTime" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="id_Rutas"/>
+          <Argument type="String" name="origen"/>
+          <Argument type="String" name="destino"/>
+          <Argument type="LocalTime" name="duracionestimada"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="origen"/>
+          <Argument type="String" name="destino"/>
+          <Argument type="LocalTime" name="duracionestimada"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdRutas" returnType="int" visibility="public"/>
+        <Method name="setIdRutas" returnType="void" visibility="public">
+          <Argument type="int" name="idRutas"/>
+        </Method>
+        <Method name="getOrigen" returnType="String" visibility="public"/>
+        <Method name="setOrigen" returnType="void" visibility="public">
+          <Argument type="String" name="origen"/>
+        </Method>
+        <Method name="getDestino" returnType="String" visibility="public"/>
+        <Method name="setDestino" returnType="void" visibility="public">
+          <Argument type="String" name="destino"/>
+        </Method>
+        <Method name="getDuracionestimada" returnType="LocalTime" visibility="public"/>
+        <Method name="setDuracionestimada" returnType="void" visibility="public">
+          <Argument type="LocalTime" name="duracionestimada"/>
+        </Method>
+        <Method name="isEstado" returnType="boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="boolean" name="estado"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Main" package="Proyecto_Final" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HorarioView" package="Vistas" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Menu" package="Vistas" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PasajeroView" package="Vistas" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="pasData" type="PasajeroData" visibility="private"/>
+        <Field name="pasajeroactual" type="Pasajero" visibility="private"/>
+        <Field name="jBBuscar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jBEliminar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jBGuardar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jBNuevo" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jBSalir" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jTFApellido" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTFCorreo" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTFDNI" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTFNombre" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTFTelefono" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="jBNuevoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="ruta" source="Entidades.Horario" target="Entidades.Rutas" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Horario" target="Entidades.Rutas" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pasData" source="Vistas.PasajeroView" target="AccesoADatos.PasajeroData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ruta" source="Entidades.Pasaje" target="Entidades.Rutas" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Pasaje" target="Entidades.Rutas" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="AccesoADatos.PasajeroData" target="Entidades.Pasajero" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="colectivo" source="Entidades.Pasaje" target="Entidades.Colectivo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Pasaje" target="Entidades.Colectivo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pasajero" source="Entidades.Pasaje" target="Entidades.Pasajero" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Pasaje" target="Entidades.Pasajero" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="AccesoADatos.HorarioData" target="Entidades.Horario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pasajeroactual" source="Vistas.PasajeroView" target="Entidades.Pasajero" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
