@@ -37,8 +37,8 @@ public class Pasajero {
         return idPasajero;
     }
 
-    public void setIdPassajero(int idPassajero) {
-        this.idPasajero = idPassajero;
+    public void setIdPassajero(int idPasajero) {
+        this.idPasajero = idPasajero;
     }
 
     public String getNombre() {
@@ -94,3 +94,5 @@ public class Pasajero {
         return nombre+", "+apellido+","+dni+", "+correo+", "+telefono+", "; //To change body of generated methods, choose Tools | Templates.
     }
 }
+
+   
