@@ -8,12 +8,12 @@ package Vistas;
  *
  * @author nkc
  */
-public class Horario extends javax.swing.JInternalFrame {
+public class HorarioView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Horario
      */
-    public Horario() {
+    public HorarioView() {
         initComponents();
     }
 

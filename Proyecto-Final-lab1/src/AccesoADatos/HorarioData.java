@@ -6,8 +6,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.time.LocalTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class HorarioData {
 
@@ -23,7 +21,7 @@ public class HorarioData {
 
         try {
             PreparedStatement ps = con.prepareCall(sql);
-            ps.setInt(1, horario.getIdRuta());
+            ps.setInt(1, horario.getRuta().getIdRutas());
 
             LocalTime horaTime = LocalTime.of(horario.getHorasalida().getHour(), horario.getHorasalida().getMinute());
             Time horaSalidaTime = Time.valueOf(horaTime);
@@ -60,7 +58,7 @@ public class HorarioData {
 
                 Horario horario = new Horario();
                 horario.setIdHorario(rs.getInt("ID_Horario"));
-                horario.setIdRuta(idRuta);
+                horario.getRuta().setIdRutas(rs.getInt("ID_Rutas"));
                 horario.setHorasalida(rs.getTime("Hora_Salida").toLocalTime());
                 horario.setHorallegada(rs.getTime("Hora_Llegada").toLocalTime());
                 horario.setEstado(rs.getBoolean("Estado"));
