@@ -61,6 +61,12 @@ public class Horario {
         this.estado = estado;
     }
 
+    public Horario(LocalTime horasalida, LocalTime horallegada, boolean estado) {
+        this.horasalida = horasalida;
+        this.horallegada = horallegada;
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         return horasalida + ", " + horallegada + ","; //To change body of generated methods, choose Tools | Templates.
