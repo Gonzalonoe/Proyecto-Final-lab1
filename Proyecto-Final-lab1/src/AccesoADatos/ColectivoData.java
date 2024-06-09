@@ -40,7 +40,7 @@ public class ColectivoData {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ColectivoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla colectivo");
         }
 
     }
@@ -64,17 +64,18 @@ public class ColectivoData {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ColectivoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla colectivo");
         }
     }
 
     public void eliminarColectivo(Colectivo colectivo) {
-        String sql = "UPDATE colectivos SET Estado=0 WHERE Matricula=?";
+        String sql = "UPDATE colectivos SET Estado=? WHERE Matricula=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, colectivo.getMatricula());
-            ps.setBoolean(2, false);
+            ps.setBoolean(1, false);
+            ps.setString(2, colectivo.getMatricula());
+            
 
             int filasEliminadas = ps.executeUpdate();
 
