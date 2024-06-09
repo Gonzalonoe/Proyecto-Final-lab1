@@ -21,8 +21,8 @@ public class RutaData {
         con = (Connection) Conexion.getConnection();
     }
     
-    public void agregarRuta(String origen, String destino, Time duracionEstimada) {
-        String sql = "INSERT INTO Rutas (Origen, Destino, Duracion_Estimada) VALUES (?, ?, ?,?)";
+    public void agregarRuta(String origen, String destino, Time duracionEstimada,boolean Estado) {
+        String sql = "INSERT INTO Rutas (Origen, Destino, Duracion_Estimada,Estado) VALUES (?, ?, ?,?)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);

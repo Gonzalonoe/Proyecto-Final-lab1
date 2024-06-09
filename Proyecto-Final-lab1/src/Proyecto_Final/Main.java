@@ -1,8 +1,13 @@
 package Proyecto_Final;
 
 import AccesoADatos.ColectivoData;
+import AccesoADatos.RutaData;
 //import AccesoADatos.HorarioData_Nico;
 import Entidades.Colectivo;
+import Entidades.Ruta;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.List;
 //import Entidades.Horario;
 //import Entidades.Ruta;
 //import java.time.LocalTime;
@@ -79,6 +84,36 @@ public class Main {
             System.out.println(colectivo.toString());
 
         }
+        
+        RutaData rutData = new RutaData();
+
+        rutData.agregarRuta("San Luis", "La Punta", Time.valueOf(LocalTime.of(1, 00)),true); 
+        rutData.agregarRuta("La Punta", "San Luis", Time.valueOf(LocalTime.of(1, 00)),true );
+        rutData.agregarRuta("Merlo", "San Luis", Time.valueOf(LocalTime.of(1, 20)) ,true);
+        rutData.agregarRuta("La Punta", "Merlo", Time.valueOf(LocalTime.of(1, 20)) ,true);
+        
+        rutData.modificarRuta(3, "San Luis, Centro", "La Punta", Time.valueOf(LocalTime.of(1, 0))); 
+        rutData.modificarRuta(4, "San Luis", "La Punta, ULP", Time.valueOf(LocalTime.of(1, 0)));
+        
+        rutData.eliminarRuta(4); 
+        
+        List<Ruta> rutasEncontradas = rutData.buscarRutas("San Luis", "");   
+        System.out.println("Rutas con mismo Origen");
+        for (Ruta ruta : rutasEncontradas) {
+            System.out.println(ruta.toString());
+        }
+        System.out.println("Buscar ruta por id");
+        Ruta rutaEncontrada = rutData.buscarRutaPorId(2);
+        System.out.println(rutaEncontrada.toString());
+        
+        System.out.println("Mostrar lista de rutas activas");
+        List<Ruta> todasLasRutas = rutData.obtenerRutas();
+        for (Ruta ruta : todasLasRutas) {
+            System.out.println(ruta.toString());
+        }
+        
+        
+        
 
     }
 
