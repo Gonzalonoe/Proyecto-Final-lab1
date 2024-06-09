@@ -3,7 +3,7 @@ package Entidades;
 
 public class Pasajero {
     
-    private int idPasajero;
+    private int ID_Pasajero;
     private String nombre;
     private String apellido;
     private int dni;
@@ -24,7 +24,7 @@ public class Pasajero {
     }
     
    public Pasajero(int idPasajero, String nombre, String apellido, int dni, String correo, int telefono, boolean estado){
-        this.idPasajero = idPasajero;
+        this.ID_Pasajero = idPasajero;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -34,11 +34,11 @@ public class Pasajero {
     }
 
     public int getIdPasajero() {
-        return idPasajero;
+        return ID_Pasajero;
     }
 
     public void setIdPasajero(int idPasajero) {
-        this.idPasajero = idPasajero;
+        this.ID_Pasajero = idPasajero;
     }
 
     public String getNombre() {

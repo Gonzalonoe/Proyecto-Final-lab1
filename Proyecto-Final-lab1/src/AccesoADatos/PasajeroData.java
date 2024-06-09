@@ -91,7 +91,7 @@ public class PasajeroData {
     }
 
     public Pasajero buscarPasajeroPorDNI(int dni) {
-        String sql = "SELECT idPasajero, nommbre, apellido, correo, telefono FROM Pasajero WHERE DNI = ?";
+        String sql = "SELECT ID_Pasajero, nombre, apellido, correo, telefono FROM Pasajero WHERE DNI = ?";
         Pasajero pasajero = null;
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class PasajeroData {
     }
 
     public Pasajero buscarporNombreApellido(String nombre, String apellido) {
-        String sql = "SELECT idPasajero, nommbre, apellido, dni, correo, telefono FROM Pasajero WHERE nombre LIKE ? OR apellido LIKE ?";
+        String sql = "SELECT ID_Pasajero, nombre, apellido, DNI, correo, telefono FROM Pasajero WHERE nombre LIKE ? OR apellido LIKE ?";
         Pasajero pasajero = null;
 
         try {
@@ -149,7 +149,7 @@ public class PasajeroData {
     }
 
     public List<Pasajero> listarPasajeros() {
-        String sql = "SELECT idPasajero, nommbre, apellido, DNI, correo, telefono FROM Pasajero";
+        String sql = "SELECT ID_Pasajero, nombre, apellido, DNI, correo, telefono FROM Pasajero";
         ArrayList<Pasajero> pasajeros = new ArrayList<>();
 
         try {
