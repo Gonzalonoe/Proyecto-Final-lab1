@@ -175,4 +175,35 @@ public class ColectivoData {
         }
         return colectivos;
     }
+    
+    public Colectivo obtenerColectivoPorId(int idColectivo){
+        
+    String sql = "SELECT * FROM colectivos WHERE ID_Colectivo = ?";
+    Colectivo colectivo = null;
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idColectivo);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            colectivo = new Colectivo();
+            colectivo.setIdColectivo(rs.getInt("ID_Colectivo"));
+            colectivo.setMatricula(rs.getString("Matricula"));
+            colectivo.setMarca(rs.getString("Marca"));
+            colectivo.setModelo(rs.getString("Modelo"));
+            colectivo.setCapacidad(rs.getInt("Capacidad"));
+        }
+
+        rs.close();
+        ps.close();
+        
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al obtener el colectivo: " + ex.getMessage());
+    }
+
+    return colectivo;
+    
+    };
+    
 }

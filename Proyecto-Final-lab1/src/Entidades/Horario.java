@@ -5,7 +5,7 @@ import java.time.LocalTime;
 public class Horario {
 
     private int idHorario;
-    private Rutas ruta;
+    private Ruta ruta;
     private LocalTime horasalida;
     private LocalTime horallegada;
     private boolean estado;
@@ -21,27 +21,27 @@ public class Horario {
         this.idHorario = idHorario;
     }
 
-    public Rutas getRuta() {
+    public Ruta getRuta() {
         return ruta;
     }
 
-    public void setRuta(Rutas ruta) {
+    public void setRuta(Ruta ruta) {
         this.ruta = ruta;
     }
 
-    public LocalTime getHorasalida() {
+    public LocalTime getHoraSalida() {
         return horasalida;
     }
 
-    public void setHorasalida(LocalTime horasalida) {
+    public void setHoraSalida(LocalTime horasalida) {
         this.horasalida = horasalida;
     }
 
-    public LocalTime getHorallegada() {
+    public LocalTime getHoraLlegada() {
         return horallegada;
     }
 
-    public void setHorallegada(LocalTime horallegada) {
+    public void setHoraLlegada(LocalTime horallegada) {
         this.horallegada = horallegada;
     }
 
@@ -53,7 +53,7 @@ public class Horario {
         this.estado = estado;
     }
 
-    public Horario(int idHorario, Rutas ruta, LocalTime horasalida, LocalTime horallegada, boolean estado) {
+    public Horario(int idHorario, Ruta ruta, LocalTime horasalida, LocalTime horallegada, boolean estado) {
         this.idHorario = idHorario;
         this.ruta = ruta;
         this.horasalida = horasalida;

@@ -5,7 +5,7 @@
 package Vistas;
 
 import AccesoADatos.ColectivoData;
-import AccesoADatos.HorarioData;
+import AccesoADatos.HorarioData_Nico;
 import AccesoADatos.PasajeData;
 import AccesoADatos.PasajeroData;
 import AccesoADatos.RutaData;
@@ -39,7 +39,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
    private List<Integer> asientos;
    
    private RutaData rutData;
-   private HorarioData horData;
+   private HorarioData_Nico horData;
    private ColectivoData colData;
    private PasajeroData pasData;
    private PasajeData psjData;
@@ -59,10 +59,10 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
 
         rutData = new RutaData();
         listaRutas = rutData.obtenerRutas();
-        horData= new HorarioData();
+        horData= new HorarioData_Nico();
         listaHorarios = new ArrayList<Horario>();
         colData = new ColectivoData();
-        listaColectivos = colData.obtenerTodosLosColectivos();
+        listaColectivos = colData.listarColectivos();
         pasData = new PasajeroData();
         listaPasajeros = pasData.listarPasajeros();
         psjData = new PasajeData();
@@ -71,7 +71,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
        // TextPrompt placeholder = new TextPrompt("Dni",jtDniPasajero) ;
         
         
-        jdcFechaViaje.setSelectableDateRange(Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now()));
+        jdFechaViaje.setSelectableDateRange(Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now()));
         
         cargarRutas();
         cargarColectivos();
@@ -100,9 +100,9 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jPanelIngreso = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jdcFechaViaje = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jtfPrecio = new javax.swing.JTextField();
+        jdFechaViaje = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -119,17 +119,14 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
 
         setMaximumSize(new java.awt.Dimension(800, 400));
         setPreferredSize(new java.awt.Dimension(800, 300));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jCRutas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCRutasActionPerformed(evt);
             }
         });
-        getContentPane().add(jCRutas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 330, -1));
 
         jLabel6.setText("Seleccione Recorrido");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 122, 26));
 
         jTHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,10 +151,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTHorarios);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 330, 116));
-
         jLabel1.setText("Seleccione un Horario");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 132, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-bus-salida-48.png"))); // NOI18N
         jButton1.setText("Guardar Venta");
@@ -166,7 +160,6 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 147, 60));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-salida-de-emergencia-48.png"))); // NOI18N
         jButton2.setText("Salir");
@@ -175,11 +168,8 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, 147, 60));
 
         jLabel2.setText("Fecha :");
-
-        jdcFechaViaje.setFocusable(false);
 
         jLabel3.setText("Precio $:");
 
@@ -200,32 +190,25 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
                 .addGap(49, 49, 49)
                 .addGroup(jPanelIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtfPrecio)
-                    .addComponent(jdcFechaViaje, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                    .addComponent(jdFechaViaje, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanelIngresoLayout.setVerticalGroup(
             jPanelIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelIngresoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelIngresoLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelIngresoLayout.createSequentialGroup()
-                        .addComponent(jdcFechaViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                .addGroup(jPanelIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdFechaViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(jPanelIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanelIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 480, 80));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel4.setText("Venta de Pasajes");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 0, 277, -1));
 
         jLabel10.setText("Seleccione pasajero");
 
@@ -248,7 +231,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 4, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -283,27 +266,90 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 490, 70));
-
         jLabel9.setText("Seleccione colectivo");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 116, 26));
 
         jcColectivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcColectivosActionPerformed(evt);
             }
         });
-        getContentPane().add(jcColectivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 330, -1));
 
         jLabel11.setText("Seleccione Nro de Asiento");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, 26));
 
         jcAsientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcAsientosActionPerformed(evt);
             }
         });
-        getContentPane().add(jcAsientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 230, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(184, 184, 184)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jCRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jcColectivos, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel11)
+                .addGap(13, 13, 13)
+                .addComponent(jcAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jPanelIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(183, 183, 183)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcColectivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanelIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -349,7 +395,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
         
         int nroAsiento = (int) jcAsientos.getSelectedItem();
         
-        java.util.Date sFecha = jdcFechaViaje.getDate();
+        java.util.Date sFecha = jdFechaViaje.getDate();
         LocalDate fecha = sFecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         Double precio = Double.parseDouble(jtfPrecio.getText());
@@ -361,7 +407,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
         
             if (asientos.size()==coleSeleccionado.getCapacidad()-1) {
                 
-                colData.eliminarColectivo(coleSeleccionado.getIdColectivo());
+                colData.eliminarColectivo(coleSeleccionado);
                 cargarColectivos();
             }
         
@@ -531,7 +577,7 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JButton jbBuscarPasajero;
     private javax.swing.JComboBox<Integer> jcAsientos;
     private javax.swing.JComboBox<Colectivo> jcColectivos;
-    private com.toedter.calendar.JDateChooser jdcFechaViaje;
+    private com.toedter.calendar.JDateChooser jdFechaViaje;
     private javax.swing.JTextField jtDniPasajero;
     private javax.swing.JTextField jtfPrecio;
     // End of variables declaration//GEN-END:variables

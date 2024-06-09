@@ -8,7 +8,7 @@ public class Pasaje {
     private int idPasaje;
     private Pasajero pasajero;
     private Colectivo colectivo;
-    private Rutas ruta;
+    private Ruta ruta;
     private LocalDate fechaviaje;
     private LocalTime horaviaje;
     private int asiento;
@@ -17,7 +17,7 @@ public class Pasaje {
     public Pasaje() {
     }
 
-    public Pasaje(int idPasaje, Pasajero pasajero, Colectivo colectivo, Rutas ruta, LocalDate fechaviaje, LocalTime horaviaje, int asiento, double precio) {
+    public Pasaje(int idPasaje, Pasajero pasajero, Colectivo colectivo, Ruta ruta, LocalDate fechaviaje, LocalTime horaviaje, int asiento, double precio) {
         this.idPasaje = idPasaje;
         this.pasajero = pasajero;
         this.colectivo = colectivo;
@@ -28,7 +28,7 @@ public class Pasaje {
         this.precio = precio;
     }
 
-    public Pasaje(Pasajero pasajero, Colectivo colectivo, Rutas ruta, LocalDate fechaviaje, LocalTime horaviaje, int asiento, double precio) {
+    public Pasaje(Pasajero pasajero, Colectivo colectivo, Ruta ruta, LocalDate fechaviaje, LocalTime horaviaje, int asiento, double precio) {
         this.pasajero = pasajero;
         this.colectivo = colectivo;
         this.ruta = ruta;
@@ -62,27 +62,27 @@ public class Pasaje {
         this.colectivo = colectivo;
     }
 
-    public Rutas getRuta() {
+    public Ruta getRuta() {
         return ruta;
     }
 
-    public void setRuta(Rutas ruta) {
+    public void setRuta(Ruta ruta) {
         this.ruta = ruta;
     }
 
-    public LocalDate getFechaviaje() {
+    public LocalDate getFechaViaje() {
         return fechaviaje;
     }
 
-    public void setFechaviaje(LocalDate fechaviaje) {
+    public void setFechaViaje(LocalDate fechaviaje) {
         this.fechaviaje = fechaviaje;
     }
 
-    public LocalTime getHoraviaje() {
+    public LocalTime getHoraViaje() {
         return horaviaje;
     }
 
-    public void setHoraviaje(LocalTime horaviaje) {
+    public void setHoraViaje(LocalTime horaviaje) {
         this.horaviaje = horaviaje;
     }
 

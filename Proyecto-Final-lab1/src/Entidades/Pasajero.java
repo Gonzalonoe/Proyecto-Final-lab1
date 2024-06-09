@@ -33,11 +33,11 @@ public class Pasajero {
         this.estado = estado;
     }
 
-    public int getIdPassajero() {
+    public int getIdPasajero() {
         return idPasajero;
     }
 
-    public void setIdPassajero(int idPasajero) {
+    public void setIdPasajero(int idPasajero) {
         this.idPasajero = idPasajero;
     }
 

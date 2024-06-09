@@ -90,7 +90,7 @@ public class PasajeroData {
         }
     }
 
-    public Pasajero busquedaporDNI(int dni) {
+    public Pasajero buscarPasajeroPorDNI(int dni) {
         String sql = "SELECT idPasajero, nommbre, apellido, correo, telefono FROM Pasajero WHERE DNI = ?";
         Pasajero pasajero = null;
         try {
@@ -101,7 +101,7 @@ public class PasajeroData {
             if (rs.next()) {
                 pasajero = new Pasajero();
                 pasajero.setDni(dni);
-                pasajero.setIdPassajero(rs.getInt("ID pasajero"));
+                pasajero.setIdPasajero(rs.getInt("ID pasajero"));
                 pasajero.setNombre(rs.getString("Nombre"));
                 pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setCorreo(rs.getString("Correo"));
@@ -130,7 +130,7 @@ public class PasajeroData {
 
             if (rs.next()) {
                 pasajero = new Pasajero();
-                pasajero.setIdPassajero(rs.getInt("ID pasajero"));
+                pasajero.setIdPasajero(rs.getInt("ID pasajero"));
                 pasajero.setNombre(rs.getString("Nombre"));
                 pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setDni(rs.getInt("DNI"));
@@ -158,7 +158,7 @@ public class PasajeroData {
 
             while (rs.next()) {
                 Pasajero pasajero = new Pasajero();
-                pasajero.setIdPassajero(rs.getInt("ID pasajero"));
+                pasajero.setIdPasajero(rs.getInt("ID pasajero"));
                 pasajero.setNombre(rs.getString("Nombre"));
                 pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setDni(rs.getInt("DNI"));

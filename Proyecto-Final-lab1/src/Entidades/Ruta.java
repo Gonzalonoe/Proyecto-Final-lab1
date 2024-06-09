@@ -2,37 +2,37 @@ package Entidades;
 
 import java.time.LocalTime;
 
-public class Rutas {
+public class Ruta {
 
     private int idRutas;
     private String origen;
     private String destino;
-    private LocalTime duracionestimada;
+    private LocalTime duracionEstimada;
     private boolean estado;
 
-    public Rutas() {
+    public Ruta() {
     }
 
-    public Rutas(int id_Rutas, String origen, String destino, LocalTime duracionestimada, boolean estado) {
+    public Ruta(int id_Rutas, String origen, String destino, LocalTime duracionestimada, boolean estado) {
         this.idRutas = id_Rutas;
         this.origen = origen;
         this.destino = destino;
-        this.duracionestimada = duracionestimada;
+        this.duracionEstimada = duracionestimada;
         this.estado = estado;
     }
 
-    public Rutas(String origen, String destino, LocalTime duracionestimada, boolean estado) {
+    public Ruta(String origen, String destino, LocalTime duracionestimada, boolean estado) {
         this.origen = origen;
         this.destino = destino;
-        this.duracionestimada = duracionestimada;
+        this.duracionEstimada = duracionestimada;
         this.estado = estado;
     }
 
-    public int getIdRutas() {
+    public int getIdRuta() {
         return idRutas;
     }
 
-    public void setIdRutas(int idRutas) {
+    public void setIdRuta(int idRutas) {
         this.idRutas = idRutas;
     }
 
@@ -52,12 +52,12 @@ public class Rutas {
         this.destino = destino;
     }
 
-    public LocalTime getDuracionestimada() {
-        return duracionestimada;
+    public LocalTime getDuracionEstimada() {
+        return duracionEstimada;
     }
 
-    public void setDuracionestimada(LocalTime duracionestimada) {
-        this.duracionestimada = duracionestimada;
+    public void setDuracionEstimada(LocalTime duracionestimada) {
+        this.duracionEstimada = duracionestimada;
     }
 
     public boolean isEstado() {
@@ -70,6 +70,6 @@ public class Rutas {
 
     @Override
     public String toString() {
-        return "Rutas{" + "id_Rutas=" + idRutas + ", origen=" + origen + ", destino=" + destino + ", duracionestimada=" + duracionestimada + ", estado=" + estado + '}';
+        return "Rutas{" + "id_Rutas=" + idRutas + ", origen=" + origen + ", destino=" + destino + ", duracionestimada=" + duracionEstimada + ", estado=" + estado + '}';
     }
 }
