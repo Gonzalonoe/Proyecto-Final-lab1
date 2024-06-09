@@ -1,9 +1,11 @@
 package Proyecto_Final;
 
 import AccesoADatos.ColectivoData;
+import AccesoADatos.PasajeroData;
 import AccesoADatos.RutaData;
 //import AccesoADatos.HorarioData_Nico;
 import Entidades.Colectivo;
+import Entidades.Pasajero;
 import Entidades.Ruta;
 import java.sql.Time;
 import java.time.LocalTime;
@@ -20,6 +22,44 @@ public class Main {
 //        Horario horario1 = new Horario(1, ruta1, LocalTime.of(10, 30), LocalTime.of(11, 30), true);
 //        horariodt.agregarHorario(horario1);
 //        horariodt.obtenerHorarios(1);
+
+        //Ingreso Pasajeros
+        PasajeroData pas = new PasajeroData();
+
+        Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
+        Pasajero pas2 = new Pasajero("Jose", "Arias", 1238821, "josearias@gmail.com", 23523121, true);
+        Pasajero pas3 = new Pasajero("Gonzalo", "Gonzaloes", 2329891, "gonzalogonzales@gmail.com", 26642912, true);
+        Pasajero pas4 = new Pasajero("Pedro", "Martinez", 23778990, "pedrom@gmail.com", 11993100, true);
+        Pasajero pas5 = new Pasajero("Rodolfo", "Guzman", 13778990, "rguzman@gmail.com", 38781002, true);
+
+        pas.agregarPasajero(pas1);
+        pas.agregarPasajero(pas2);
+        pas.agregarPasajero(pas3);
+        pas.agregarPasajero(pas4);
+        pas.agregarPasajero(pas5);
+
+        //Listamos Pasajeros
+        for (Pasajero pasajero : pas.listarPasajeros()) {
+
+            System.out.println(pasajero.toString());
+
+        }
+
+        //Modificamos Pasajeros
+        Pasajero pas6 = new Pasajero("Oscar", "Guzman", 8829300, "oguzman@gmail.com", 26781002, true);
+        pas.modificarPasajero(pas6);
+
+        //Eliminar Pasajero
+        Pasajero pas7 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
+        pas.modificarPasajero(pas7);
+
+        //Buscar Pasajero por DNI
+        Pasajero dnipasajero = pas.buscarPasajeroPorDNI(1238821);
+        System.out.println(dnipasajero.toString());
+
+        //Buscar pasajero por nombre o apellido
+        Pasajero nombreapellidopasajero = pas.buscarporNombreApellido("Jose", "Arias");
+        System.out.println(nombreapellidopasajero.toString());
 
         //Ingresar Colectivo Guillermo
         ColectivoData cole = new ColectivoData();
@@ -55,9 +95,7 @@ public class Main {
         //Modificar Colectivo Guillermo
         Colectivo cole10 = new Colectivo("RD 888 SD", "Iveco_Daily", "740", 25, true);
         cole.modificarColectivo(cole10);
-
         System.out.println("##############################################################################");
-
         System.out.println("Eliminamos el Colectivo RK 777 KJ a Estado --> 0 ");
         System.out.println("-------------------------------------------------------------------------------");
 //        Eliminar Colectivo Guillermo
@@ -80,24 +118,17 @@ public class Main {
         System.out.println("-------------------------------------------------------------------------------");
         //Listar Colectivos Guillermo
         for (Colectivo colectivo : cole.listarColectivos()) {
-
             System.out.println(colectivo.toString());
-
         }
-        
         RutaData rutData = new RutaData();
-
-        rutData.agregarRuta("San Luis", "La Punta", Time.valueOf(LocalTime.of(1, 00)),true); 
-        rutData.agregarRuta("La Punta", "San Luis", Time.valueOf(LocalTime.of(1, 00)),true );
-        rutData.agregarRuta("Merlo", "San Luis", Time.valueOf(LocalTime.of(1, 20)) ,true);
-        rutData.agregarRuta("La Punta", "Merlo", Time.valueOf(LocalTime.of(1, 20)) ,true);
-        
-        rutData.modificarRuta(3, "San Luis, Centro", "La Punta", Time.valueOf(LocalTime.of(1, 0))); 
+        rutData.agregarRuta("San Luis", "La Punta", Time.valueOf(LocalTime.of(1, 00)), true);
+        rutData.agregarRuta("La Punta", "San Luis", Time.valueOf(LocalTime.of(1, 00)), true);
+        rutData.agregarRuta("Merlo", "San Luis", Time.valueOf(LocalTime.of(1, 20)), true);
+        rutData.agregarRuta("La Punta", "Merlo", Time.valueOf(LocalTime.of(1, 20)), true);
+        rutData.modificarRuta(3, "San Luis, Centro", "La Punta", Time.valueOf(LocalTime.of(1, 0)));
         rutData.modificarRuta(4, "San Luis", "La Punta, ULP", Time.valueOf(LocalTime.of(1, 0)));
-        
-        rutData.eliminarRuta(4); 
-        
-        List<Ruta> rutasEncontradas = rutData.buscarRutas("San Luis", "");   
+        rutData.eliminarRuta(4);
+        List<Ruta> rutasEncontradas = rutData.buscarRutas("San Luis", "");
         System.out.println("Rutas con mismo Origen");
         for (Ruta ruta : rutasEncontradas) {
             System.out.println(ruta.toString());
@@ -105,16 +136,11 @@ public class Main {
         System.out.println("Buscar ruta por id");
         Ruta rutaEncontrada = rutData.buscarRutaPorId(2);
         System.out.println(rutaEncontrada.toString());
-        
+
         System.out.println("Mostrar lista de rutas activas");
         List<Ruta> todasLasRutas = rutData.obtenerRutas();
         for (Ruta ruta : todasLasRutas) {
             System.out.println(ruta.toString());
         }
-        
-        
-        
-
     }
-
 }
