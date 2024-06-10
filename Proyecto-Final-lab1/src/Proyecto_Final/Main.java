@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
 
        // Ingreso Pasajeros
-        PasajeroData pas = new PasajeroData();
+        AccesoADatos.PasajeroData pas = new AccesoADatos.PasajeroData();
 
 //        Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
 //        Pasajero pas2 = new Pasajero("Jose", "Arias", 1238821, "josearias@gmail.com", 23523121, true);
@@ -58,17 +58,9 @@ public class Main {
 //        System.out.println(pasajeroEncontrado.toString());
  
         //Buscar pasajero por nombre o apellido
-<<<<<<< Updated upstream
-        System.out.println("Pasajero buscado por nombre");
-        Pasajero nombreapellidopasajero = pas.buscarporNombreApellido("Jose", "");
-        if (nombreapellidopasajero!=null) {
-           System.out.println(nombreapellidopasajero.toString()); 
-        }
-=======
 //          System.out.println("Pasajero buscado por nombre");
 //          Pasajero nombreapellidopasajero = pas.buscarporNombreApellido("Jose", "Arias");
 //          System.out.println(nombreapellidopasajero.toString());
->>>>>>> Stashed changes
 
         //Ingresar Colectivo Guillermo
 //        ColectivoData cole = new ColectivoData();

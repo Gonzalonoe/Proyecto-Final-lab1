@@ -1,5 +1,10 @@
 package AccesoADatos;
 
+/**
+ *
+ * @author Gonzalo
+ */
+import AccesoADatos.Conexion;
 import Entidades.Pasajero;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,11 +56,7 @@ public class PasajeroData {
     }
 
     public void modificarPasajero(Pasajero pasajero) {
-<<<<<<< Updated upstream
-        String sql = "UPDATE Pasajeros SET nombre=?, Apellido=?, Correo=?, Telefono=?, Estado=? WHERE DNI=?";
-=======
         String sql = "UPDATE Pasajero SET nombre=?, apellido=?, correo=?, telefono=?, Estado=? WHERE dni=?";
->>>>>>> Stashed changes
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -190,3 +191,4 @@ public class PasajeroData {
     }
 
 }
+
