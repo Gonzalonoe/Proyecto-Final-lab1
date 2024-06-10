@@ -51,7 +51,11 @@ public class PasajeroData {
     }
 
     public void modificarPasajero(Pasajero pasajero) {
+<<<<<<< Updated upstream
         String sql = "UPDATE Pasajeros SET nombre=?, Apellido=?, Correo=?, Telefono=?, Estado=? WHERE DNI=?";
+=======
+        String sql = "UPDATE Pasajero SET nombre=?, apellido=?, correo=?, telefono=?, Estado=? WHERE dni=?";
+>>>>>>> Stashed changes
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -73,12 +77,13 @@ public class PasajeroData {
         }
     }
 
-    public void eliminarPasajero(int dni) {
-        String sql = "DELETE FROM Pasajeros WHERE DNI=? AND estado=1";
+    public void eliminarPasajero(Pasajero pasajero) {
+        String sql = "UPDATE Pasajero SET Estado=? WHERE DNI=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, dni);
+            ps.setBoolean(1, false);
+            ps.setInt(2, pasajero.getDni());
             ps.executeUpdate();
             
             int filaseliminadas = ps.executeUpdate();
@@ -96,7 +101,7 @@ public class PasajeroData {
     }
 
     public Pasajero buscarPasajeroPorDNI(int dni) {
-        String sql = "SELECT ID_Pasajero, nombre, apellido, correo, telefono FROM Pasajeros WHERE DNI = ? AND estado=1";
+        String sql = "SELECT * FROM Pasajero WHERE DNI = ? AND estado = 1";
         Pasajero pasajero = null;
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -111,9 +116,10 @@ public class PasajeroData {
                 pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setCorreo(rs.getString("Correo"));
                 pasajero.setTelefono(rs.getInt("Telefono"));
+                pasajero.setEstado(rs.getBoolean("Estado"));
 
             } else {
-                JOptionPane.showInternalMessageDialog(null, "No hay pasajero con ese DNI");
+                JOptionPane.showMessageDialog(null, "No hay pasajero con ese DNI");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -124,25 +130,25 @@ public class PasajeroData {
     }
 
     public Pasajero buscarporNombreApellido(String nombre, String apellido) {
-        String sql = "SELECT * FROM Pasajeros WHERE nombre LIKE ? OR apellido LIKE ? AND estado=1";
+        String sql = "SELECT * FROM Pasajero WHERE nombre = ? OR apellido = ? AND estado = 1";
         Pasajero pasajero = null;
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, "%" + nombre + "%");
-            ps.setString(2, "%" + apellido + "%");
+            ps.setString(1, nombre);
+            ps.setString(2, apellido);
             
-            ps.executeUpdate();
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 pasajero = new Pasajero();
+                pasajero.setNombre(nombre);
+                pasajero.setApellido(apellido);
                 pasajero.setIdPasajero(rs.getInt("ID_pasajero"));
-                pasajero.setNombre(rs.getString("Nombre"));
-                pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setDni(rs.getInt("DNI"));
                 pasajero.setCorreo(rs.getString("Correo"));
                 pasajero.setTelefono(rs.getInt("Telefono"));
+                pasajero.setEstado(rs.getBoolean("Estado"));
 
             } else {
                 JOptionPane.showInternalMessageDialog(null, "No hay pasajero con ese nombre o apellido");
@@ -156,7 +162,7 @@ public class PasajeroData {
     }
 
     public List<Pasajero> listarPasajeros() {
-        String sql = "SELECT ID_Pasajero, nombre, apellido, DNI, correo, telefono FROM Pasajeros";
+        String sql = "SELECT ID_Pasajero, nombre, apellido, DNI, correo, telefono FROM Pasajero";
         ArrayList<Pasajero> pasajeros = new ArrayList<>();
 
         try {

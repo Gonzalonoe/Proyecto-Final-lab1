@@ -36,34 +36,39 @@ public class Main {
 //        pas.agregarPasajero(pas5);
 
         //Listamos Pasajeros
-        System.out.println("Lista de pasajeros");
-        for (Pasajero pasajero : pas.listarPasajeros()) {
+//      System.out.println("Lista de pasajeros");
+//      for (Pasajero pasajero : pas.listarPasajeros()) {
 
-            System.out.println(pasajero.toString());
+//          System.out.println(pasajero.toString());
 
-        }
+//      }
 
         //Modificamos Pasajeros
-        Pasajero pas6 = new Pasajero(5,"Oscar", "Guzman", 8829300, "rguzman@gmail.com", 38781002, true);
-        pas.modificarPasajero(pas6);
+//          Pasajero pas6 = new Pasajero(5,"Oscar", "Guzman", 8829300, "rguzman@gmail.com", 38781002, true);
+//          pas.modificarPasajero(pas6);
 
         //Eliminar Pasajero
+//        Pasajero pas7 = new Pasajero("Pedro", "Martinez", 23778990, "pedrom@gmail.com", 11993100, true);
+//        pas.eliminarPasajero(pas7);
         
-        pas.eliminarPasajero(2329891);
 
         //Buscar Pasajero por DNI
-        System.out.println("Pasajero buscado por Dni");
-        Pasajero dnipasajero = pas.buscarPasajeroPorDNI(43778990);
-        if (dnipasajero!=null) {
-           System.out.println(dnipasajero.toString()); 
-        }
+//        System.out.println("Pasajero buscado por Dni");
+//        Pasajero pasajeroEncontrado = pas.buscarPasajeroPorDNI(13778990);
+//        System.out.println(pasajeroEncontrado.toString());
  
         //Buscar pasajero por nombre o apellido
+<<<<<<< Updated upstream
         System.out.println("Pasajero buscado por nombre");
         Pasajero nombreapellidopasajero = pas.buscarporNombreApellido("Jose", "");
         if (nombreapellidopasajero!=null) {
            System.out.println(nombreapellidopasajero.toString()); 
         }
+=======
+//          System.out.println("Pasajero buscado por nombre");
+//          Pasajero nombreapellidopasajero = pas.buscarporNombreApellido("Jose", "Arias");
+//          System.out.println(nombreapellidopasajero.toString());
+>>>>>>> Stashed changes
 
         //Ingresar Colectivo Guillermo
 //        ColectivoData cole = new ColectivoData();
@@ -96,31 +101,41 @@ public class Main {
 //        System.out.println("###############################################################################");
 //        System.out.println("Modificamo el Colectivo RD 888 SD a Marca de Volvo a --> Iveco_Daily etc.");
 //        System.out.println("-------------------------------------------------------------------------------");
+
 //        //Modificar Colectivo Guillermo
+
 //        Colectivo cole10 = new Colectivo("RD 888 SD", "Iveco_Daily", "740", 25, true);
 //        cole.modificarColectivo(cole10);
 //        System.out.println("##############################################################################");
 //        System.out.println("Eliminamos el Colectivo RK 777 KJ a Estado --> 0 ");
 //        System.out.println("-------------------------------------------------------------------------------");
+
 ////        Eliminar Colectivo Guillermo
+
 //        Colectivo cole11 = new Colectivo("RK 777 KJ", "Iveco_Daily", "740", 25, true);
 //        cole.eliminarColectivo(cole11);
 //        System.out.println("###############################################################################");
 //        System.out.println("Buscamos por matricula el Colectivo RB 555 AB ");
 //        System.out.println("-------------------------------------------------------------------------------");
+
 //        //Buscar Colectivo por Matricula Guillermo
+
 //        Colectivo colectivoEncontrado = cole.buscarColectivoMatricula("RB 555 AB");
 //        System.out.println(colectivoEncontrado.toString());
 //        System.out.println("###############################################################################");
 //        System.out.println("Buscamos por Marca el Colectivo Fiat ");
 //        System.out.println("-------------------------------------------------------------------------------");
-//        //Buscar Colectivo por Marca Guillermo        
+
+//        //Buscar Colectivo por Marca Guillermo  
+
 //        Colectivo colectivoEncontradoM = cole.buscarColectivoMarca("Fiat");
 //        System.out.println(colectivoEncontradoM.toString());
 //        System.out.println("###############################################################################");
 //        System.out.println("Listamos todos los colectivos ");
 //        System.out.println("-------------------------------------------------------------------------------");
+
 //        //Listar Colectivos Guillermo
+
 //        for (Colectivo colectivo : cole.listarColectivos()) {
 //            System.out.println(colectivo.toString());
 //        }

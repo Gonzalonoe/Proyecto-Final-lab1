@@ -110,7 +110,7 @@ public class ColectivoData {
             } else {
                 JOptionPane.showMessageDialog(null, "No hay colectivo con esta matricula");
             }
-            ps.close();;
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en la busqueda por Matricula");
         }
@@ -140,7 +140,7 @@ public class ColectivoData {
             } else {
                 JOptionPane.showMessageDialog(null, "No hay colectivo con esta matricula");
             }
-            ps.close();;
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en la busqueda por Matricula");
         }
