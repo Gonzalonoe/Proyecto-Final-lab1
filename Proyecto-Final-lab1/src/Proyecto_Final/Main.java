@@ -2,26 +2,25 @@ package Proyecto_Final;
 
 import AccesoADatos.ColectivoData;
 import AccesoADatos.HorarioData;
+import AccesoADatos.PasajeData;
 import AccesoADatos.PasajeroData;
 import AccesoADatos.RutaData;
-//import AccesoADatos.HorarioData_Nico;
 import Entidades.Colectivo;
 import Entidades.Horario;
+import Entidades.Pasaje;
 import Entidades.Pasajero;
 import Entidades.Ruta;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
-//import Entidades.Horario;
-//import Entidades.Ruta;
-//import java.time.LocalTime;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
        // Ingreso Pasajeros
-        AccesoADatos.PasajeroData pas = new AccesoADatos.PasajeroData();
+        PasajeroData pas = new PasajeroData();
 
 //        Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
 //        Pasajero pas2 = new Pasajero("Jose", "Arias", 1238821, "josearias@gmail.com", 23523121, true);
@@ -63,7 +62,7 @@ public class Main {
 //          System.out.println(nombreapellidopasajero.toString());
 
         //Ingresar Colectivo Guillermo
-//        ColectivoData cole = new ColectivoData();
+        ColectivoData cole = new ColectivoData();
 //
 //        Colectivo cole1 = new Colectivo("RB 111 AB", "Scania-SABB", "114", 40, true);
 //        Colectivo cole2 = new Colectivo("RW 222 WX", "Mercedes-Benz", "1114", 45, true);
@@ -199,5 +198,7 @@ public class Main {
 //    }
     }
     
+    PasajeData pasa = new PasajeData();
+ 
     
 }
