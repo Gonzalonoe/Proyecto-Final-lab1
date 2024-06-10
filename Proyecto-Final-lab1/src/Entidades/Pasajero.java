@@ -89,9 +89,9 @@ public class Pasajero {
         this.estado = estado;
     }
 
-    @Override
+   @Override
     public String toString() {
-        return nombre+", "+apellido+","+dni+", "+correo+", "+telefono+", "; //To change body of generated methods, choose Tools | Templates.
+        return  nombre +" "+ apellido + " " + dni ;
     }
 }
 

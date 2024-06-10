@@ -7,6 +7,7 @@ package AccesoADatos;
 import Entidades.Ruta;
 import org.mariadb.jdbc.Connection;
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,37 +22,53 @@ public class RutaData {
         con = (Connection) Conexion.getConnection();
     }
     
-    public void agregarRuta(String origen, String destino, Time duracionEstimada,boolean Estado) {
+    public void agregarRuta(Ruta ruta) {
         String sql = "INSERT INTO Rutas (Origen, Destino, Duracion_Estimada,Estado) VALUES (?, ?, ?,?)";
         
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, origen);
-            ps.setString(2, destino);
-            ps.setTime(3, duracionEstimada);
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, ruta.getOrigen());
+            ps.setString(2, ruta.getDestino());
+            
+            Time hora = Time.valueOf(ruta.getDuracionEstimada());
+            ps.setTime(3, hora);
+            
             ps.setBoolean(4, true);
             
             ps.executeUpdate();
-            ps.close();
             
-            JOptionPane.showMessageDialog(null, "Ruta agregada correctamente");
+            ResultSet rs = ps.getGeneratedKeys();
+
+        if (rs.next()) {
+            ruta.setIdRuta(rs.getInt(1));
+            JOptionPane.showMessageDialog(null, "Ruta ingresada con éxito");
+        }
+        
+        ps.close();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al agregar la ruta: " + ex.getMessage());
         }
     }
     
-    public void modificarRuta(int idRuta, String origen, String destino, Time duracionEstimada) {
+    public void modificarRuta(Ruta ruta) {
     String sql = "UPDATE Rutas SET Origen = ?, Destino = ?, Duracion_Estimada = ? WHERE ID_Ruta = ?";
     
     try {
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, origen);
-        ps.setString(2, destino);
-        ps.setTime(3, duracionEstimada);
-        ps.setInt(4, idRuta);
+        ps.setString(1, ruta.getOrigen());
+        ps.setString(2, ruta.getDestino());
         
-        ps.executeUpdate();
-        ps.close();
+        
+       Time hora = Time.valueOf(ruta.getDuracionEstimada());
+            ps.setTime(3, hora);
+        ps.setInt(4, ruta.getIdRuta());
+
+            int registro = ps.executeUpdate();
+
+            if (registro == 1) {
+                JOptionPane.showMessageDialog(null, "Colectivo modificado");
+            }
         
         JOptionPane.showMessageDialog(null, "Ruta modificada correctamente");
     } catch (SQLException ex) {
@@ -70,7 +87,7 @@ public void eliminarRuta(int idRuta) {
         ps.executeUpdate();
         ps.close();
         
-        JOptionPane.showMessageDialog(null, "Ruta eliminada correctamente (baja lógica)");
+        JOptionPane.showMessageDialog(null, "Ruta eliminada correctamente");
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al eliminar la ruta: " + ex.getMessage());
     }
@@ -144,6 +161,7 @@ public void eliminarRuta(int idRuta) {
                 ruta.setOrigen(rs.getString("Origen"));
                 ruta.setDestino(rs.getString("Destino"));
                 ruta.setDuracionEstimada(rs.getTime("Duracion_Estimada").toLocalTime());
+                ruta.setEstado(true);
                 rutas.add(ruta);
             }
             

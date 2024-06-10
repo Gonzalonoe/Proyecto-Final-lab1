@@ -32,10 +32,10 @@ public class ColectivoData {
             ps.setBoolean(5, true);
             ps.executeUpdate();
 
-            ResultSet re = ps.getGeneratedKeys();
+            ResultSet rs = ps.getGeneratedKeys();
 
-            if (re.next()) {
-                colectivo.setIdColectivo(re.getInt(1));
+            if (rs.next()) {
+                colectivo.setIdColectivo(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Colectivo ingresado con exito");
             }
 
@@ -54,8 +54,6 @@ public class ColectivoData {
             ps.setInt(3, colectivo.getCapacidad());
             ps.setBoolean(4, colectivo.isEstado());
             ps.setString(5, colectivo.getMatricula());
-
-            ps.executeUpdate();
 
             int registro = ps.executeUpdate();
 

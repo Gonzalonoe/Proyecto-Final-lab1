@@ -77,9 +77,9 @@ public class Colectivo {
         this.estado = estado;
     }
 
-    @Override
+     @Override
     public String toString() {
-           return "ID = " + idColectivo +" | "+"Mat. = " + matricula +" | "+ "Mar. = " + marca +" | "+ "Mod. = " + modelo +" | "+ "Cap. = " + capacidad +" | "+ "Estado = " + estado +" | " ;
+        return   marca + " / Matricula: " + matricula + " / Capacidad "+ capacidad;
     }
 
 }

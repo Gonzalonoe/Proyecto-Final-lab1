@@ -30,7 +30,7 @@ public class HorarioData {
         String sql = "INSERT INTO Horarios (ID_Ruta, Hora_Salida, Hora_Llegada, Estado) VALUES (?, ?, ?,?)";
         
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, horario.getRuta().getIdRuta());
             
             LocalTime horaATime = LocalTime.of(horario.getHoraSalida().getHour(),horario.getHoraSalida().getMinute());
@@ -43,11 +43,16 @@ public class HorarioData {
             
             ps.setTime(3, horaLlegadaTime);
             ps.setBoolean(4, true);
-            
             ps.executeUpdate();
-            ps.close();
             
-            JOptionPane.showMessageDialog(null, "Horario agregado correctamente");
+            ResultSet rs = ps.getGeneratedKeys();
+
+            if (rs.next()) {
+                horario.setIdHorario(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Horario agregado correctamente");
+            }
+            
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al agregar el horario: " + ex.getMessage());
         }

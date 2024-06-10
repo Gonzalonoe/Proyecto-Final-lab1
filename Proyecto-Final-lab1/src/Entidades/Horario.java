@@ -61,7 +61,8 @@ public class Horario {
         this.estado = estado;
     }
 
-    public Horario(LocalTime horasalida, LocalTime horallegada, boolean estado) {
+    public Horario(Ruta ruta ,LocalTime horasalida, LocalTime horallegada, boolean estado) {
+       this.ruta=ruta;
         this.horasalida = horasalida;
         this.horallegada = horallegada;
         this.estado = estado;
@@ -69,6 +70,8 @@ public class Horario {
 
     @Override
     public String toString() {
-        return horasalida + ", " + horallegada + ","; //To change body of generated methods, choose Tools | Templates.
+        return "idHorario=" + idHorario + ", ruta=" + ruta.getIdRuta() + ", horasalida=" + horasalida + ", horallegada=" + horallegada + ", estado=" + estado ;
     }
+
+    
 }

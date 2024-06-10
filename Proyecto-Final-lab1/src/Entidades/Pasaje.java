@@ -102,4 +102,10 @@ public class Pasaje {
         this.precio = precio;
     }
 
+    @Override
+    public String toString() {
+        return "idPasaje=" + idPasaje + ", pasajero=" + pasajero.getIdPasajero() + ", colectivo=" + colectivo.getIdColectivo() + ", ruta=" + ruta.getIdRuta() + ", horaviaje=" + horaviaje + ", asiento=" + asiento + ", precio=" + precio + '}';
+    }
+
+    
 }

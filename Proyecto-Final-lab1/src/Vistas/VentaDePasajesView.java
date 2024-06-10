@@ -5,7 +5,8 @@
 package Vistas;
 
 import AccesoADatos.ColectivoData;
-import AccesoADatos.HorarioData_Nico;
+import AccesoADatos.HorarioData;
+
 import AccesoADatos.PasajeData;
 import AccesoADatos.PasajeroData;
 import AccesoADatos.RutaData;
@@ -39,7 +40,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
    private List<Integer> asientos;
    
    private RutaData rutData;
-   private HorarioData_Nico horData;
+   private HorarioData horData;
    private ColectivoData colData;
    private PasajeroData pasData;
    private PasajeData psjData;
@@ -59,7 +60,7 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
 
         rutData = new RutaData();
         listaRutas = rutData.obtenerRutas();
-        horData= new HorarioData_Nico();
+        horData= new HorarioData();
         listaHorarios = new ArrayList<Horario>();
         colData = new ColectivoData();
         listaColectivos = colData.listarColectivos();
@@ -499,7 +500,7 @@ dispose();        // TODO add your handling code here:
 
         Ruta rtaSelec = (Ruta) jCRutas.getSelectedItem();
 
-        listaHorarios = horData.obtenerHorarios(rtaSelec.getIdRuta());
+        listaHorarios = horData.obtenerHorariosActivos(rtaSelec.getIdRuta());
 
         for (Horario hora : listaHorarios) {
             modelo.addRow(new Object[]{hora.getHoraSalida(), hora.getHoraLlegada()});

@@ -51,11 +51,14 @@ public class PasajeData {
             ps.setInt(6, pasaje.getAsiento());
             ps.setDouble(7, pasaje.getPrecio());
             
-            
-            ps.executeUpdate();
-            ps.close();
-            
+          ResultSet rs = ps.getGeneratedKeys();
+
+        if (rs.next()) {
+            pasaje.setIdPasaje(rs.getInt(1));
             JOptionPane.showMessageDialog(null, "Venta de pasaje registrada correctamente");
+        }
+            
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al registrar la venta de pasaje: " + ex.getMessage());
         }
