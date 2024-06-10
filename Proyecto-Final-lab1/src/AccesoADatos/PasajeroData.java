@@ -51,7 +51,7 @@ public class PasajeroData {
     }
 
     public void modificarPasajero(Pasajero pasajero) {
-        String sql = "UPDATE Pasajeros SET nombre=?, Apellido=? Correo=?, Telefono=?, Estado=? WHERE DNI=?";
+        String sql = "UPDATE Pasajeros SET nombre=?, Apellido=?, Correo=?, Telefono=?, Estado=? WHERE DNI=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);

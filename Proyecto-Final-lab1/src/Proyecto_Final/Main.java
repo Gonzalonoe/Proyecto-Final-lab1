@@ -61,7 +61,9 @@ public class Main {
         //Buscar pasajero por nombre o apellido
         System.out.println("Pasajero buscado por nombre");
         Pasajero nombreapellidopasajero = pas.buscarporNombreApellido("Jose", "");
-        System.out.println(nombreapellidopasajero.toString());
+        if (nombreapellidopasajero!=null) {
+           System.out.println(nombreapellidopasajero.toString()); 
+        }
 
         //Ingresar Colectivo Guillermo
 //        ColectivoData cole = new ColectivoData();
