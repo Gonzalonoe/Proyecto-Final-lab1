@@ -13,6 +13,8 @@ public class Horario {
     public Horario() {
     }
 
+    
+    
     public int getIdHorario() {
         return idHorario;
     }
