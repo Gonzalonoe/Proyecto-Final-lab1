@@ -226,47 +226,47 @@ public class AplicacionView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu7MouseClicked
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      escritorio.removeAll();
-            escritorio.repaint();
-            VentaDePasajesView form = new VentaDePasajesView();
-            form.setVisible(true);
-            form.getContentPane().setBackground(new Color(255,255,255));
-            form.setLocation(50, 50);
-            form.setSize(600,600);
-            escritorio.add(form); 
+        escritorio.removeAll();
+        escritorio.repaint();
+        VentaDePasajesView form = new VentaDePasajesView();
+        form.setVisible(true);
+        form.getContentPane().setBackground(new Color(255, 255, 255));
+        form.setLocation(50, 50);
+        form.setSize(600, 600);
+        escritorio.add(form);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-            escritorio.removeAll();
-            escritorio.repaint();
-            HorarioView form = new HorarioView();
-            form.setVisible(true);
-            form.getContentPane().setBackground(new Color(255,255,255));
-            form.setLocation(50, 50);
-            form.setSize(600,600);
-            escritorio.add(form); 
+        escritorio.removeAll();
+        escritorio.repaint();
+        HorarioView form = new HorarioView();
+        form.setVisible(true);
+        form.getContentPane().setBackground(new Color(255, 255, 255));
+        form.setLocation(50, 50);
+        form.setSize(600, 600);
+        escritorio.add(form);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-            escritorio.removeAll();
-            escritorio.repaint();
-            PasajeroView form = new PasajeroView();
-            form.setVisible(true);
-            form.getContentPane().setBackground(new Color(255,255,255));
-            form.setLocation(50, 50);
-            form.setSize(600,600);
-            escritorio.add(form);         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        PasajeroView form = new PasajeroView();
+        form.setVisible(true);
+        form.getContentPane().setBackground(new Color(255, 255, 255));
+        form.setLocation(50, 50);
+        form.setSize(600, 600);
+        escritorio.add(form);         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-            escritorio.removeAll();
-            escritorio.repaint();
-            RutasView form = new RutasView();
-            form.setVisible(true);
-            form.getContentPane().setBackground(new Color(255,255,255));
-            form.setLocation(50, 50);
-            form.setSize(600,600);
-            escritorio.add(form);         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        RutasView form = new RutasView();
+        form.setVisible(true);
+        form.getContentPane().setBackground(new Color(255, 255, 255));
+        form.setLocation(50, 50);
+        form.setSize(600, 600);
+        escritorio.add(form);         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
