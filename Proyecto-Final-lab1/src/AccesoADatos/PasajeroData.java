@@ -56,7 +56,7 @@ public class PasajeroData {
     }
 
     public void modificarPasajero(Pasajero pasajero) {
-        String sql = "UPDATE Pasajero SET nombre=?, apellido=?, correo=?, telefono=?, Estado=? WHERE dni=?";
+        String sql = "UPDATE Pasajeros SET nombre=?, apellido=?, correo=?, telefono=?, Estado=? WHERE dni=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class PasajeroData {
     }
 
     public void eliminarPasajero(Pasajero pasajero) {
-        String sql = "UPDATE Pasajero SET Estado=? WHERE DNI=?";
+        String sql = "UPDATE Pasajeros SET Estado=? WHERE DNI=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class PasajeroData {
     }
 
     public Pasajero buscarPasajeroPorDNI(int dni) {
-        String sql = "SELECT * FROM Pasajero WHERE DNI = ? AND estado = 1";
+        String sql = "SELECT * FROM Pasajeros WHERE DNI = ? AND estado = 1";
         Pasajero pasajero = null;
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class PasajeroData {
     }
 
     public Pasajero buscarporNombreApellido(String nombre, String apellido) {
-        String sql = "SELECT * FROM Pasajero WHERE nombre = ? OR apellido = ? AND estado = 1";
+        String sql = "SELECT * FROM Pasajeros WHERE nombre = ? OR apellido = ? AND estado = 1";
         Pasajero pasajero = null;
 
         try {
@@ -163,7 +163,7 @@ public class PasajeroData {
     }
 
     public List<Pasajero> listarPasajeros() {
-        String sql = "SELECT ID_Pasajero, nombre, apellido, DNI, correo, telefono FROM Pasajero";
+        String sql = "SELECT ID_Pasajero, nombre, apellido, DNI, correo, telefono FROM Pasajeros";
         ArrayList<Pasajero> pasajeros = new ArrayList<>();
 
         try {
@@ -190,5 +190,9 @@ public class PasajeroData {
 
     }
 
+    
+    
+    
+    
 }
 

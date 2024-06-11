@@ -31,25 +31,19 @@ public class PasajeData {
     }
 
     public void registrarVenta(Pasaje pasaje) {
-        String sql = "INSERT INTO Pasaje (ID_Pasajero, ID_Colectivo, ID_Ruta, Fecha_Viaje, Hora_Viaje, Asiento, Precio) "
+        String sql = "INSERT INTO Pasajes (ID_Pasajero, ID_Colectivo, ID_Ruta, Fecha_Viaje, Hora_Viaje, Asiento, Precio) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, pasaje.getPasajero().getIdPasajero());
             ps.setInt(2, pasaje.getColectivo().getIdColectivo());
             ps.setInt(3, pasaje.getRuta().getIdRuta());
-            
-            LocalDate localDate = pasaje.getFechaViaje();
-            Date fecha = java.sql.Date.valueOf(localDate);
-            ps.setDate(4, fecha);
-            
-            LocalTime localTime =pasaje.getHoraViaje();
-            Time hora = Time.valueOf(localTime);
-            ps.setTime(5,hora);
-            
+            ps.setDate(4, java.sql.Date.valueOf(pasaje.getFechaViaje()));
+            ps.setTime(5,java.sql.Time.valueOf(pasaje.getHoraViaje()));
             ps.setInt(6, pasaje.getAsiento());
             ps.setDouble(7, pasaje.getPrecio());
+            ps.executeUpdate();
             
           ResultSet rs = ps.getGeneratedKeys();
 
@@ -67,7 +61,7 @@ public class PasajeData {
     }
     
     public void modificarPasaje(Pasaje pasaje) {
-    String sql = "UPDATE Pasaje SET ID_Pasajero = ?, ID_Colectivo = ?, ID_Ruta = ?, Fecha_Viaje = ?, Hora_Viaje = ?, Asiento = ?, Precio = ? WHERE ID_Pasaje = ?";
+    String sql = "UPDATE Pasajes SET ID_Pasajero = ?, ID_Colectivo = ?, ID_Ruta = ?, Fecha_Viaje = ?, Hora_Viaje = ?, Asiento = ?, Precio = ? WHERE ID_Pasaje = ?";
         
     try {
         PreparedStatement ps = con.prepareStatement(sql);
@@ -98,7 +92,7 @@ public class PasajeData {
 }
     public void eliminarPasaje (Pasaje pasaje){
       
-        String sql = "DELETE FROM Pasajero WHERE ID_Pasaje=?";
+        String sql = "DELETE FROM Pasajes WHERE ID_Pasaje=?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -122,7 +116,7 @@ public class PasajeData {
     public List<Pasaje> mostrarPasajesVendidos() {
         
     List<Pasaje> pasajes = new ArrayList<>();
-    String sql = "SELECT * FROM Pasaje";
+    String sql = "SELECT * FROM Pasajes";
     
     try {
         PreparedStatement ps = con.prepareStatement(sql);
@@ -159,7 +153,7 @@ public class PasajeData {
     
     public List<Integer> asientosOcupados(int idColectivo, int idRuta, LocalTime horario){
 
-        String sql = "SELECT asiento FROM Pasaje WHERE ID_Colectivo=? AND ID_Ruta=? AND Hora_Viaje=?";
+        String sql = "SELECT Asiento FROM Pasajes WHERE ID_Colectivo=? AND ID_Ruta=? AND Hora_Viaje=?";
         
         ArrayList<Integer> listaOcupados = new ArrayList<>();
         
