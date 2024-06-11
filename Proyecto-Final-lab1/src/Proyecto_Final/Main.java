@@ -11,6 +11,7 @@ import Entidades.Pasaje;
 import Entidades.Pasajero;
 import Entidades.Ruta;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Main {
        // Ingreso Pasajeros
         PasajeroData pas = new PasajeroData();
 
-//        Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
+       Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
 //        Pasajero pas2 = new Pasajero("Jose", "Arias", 1238821, "josearias@gmail.com", 23523121, true);
 //        Pasajero pas3 = new Pasajero("Gonzalo", "Gonzaloes", 2329891, "gonzalogonzales@gmail.com", 26642912, true);
 //        Pasajero pas4 = new Pasajero("Pedro", "Martinez", 23778990, "pedrom@gmail.com", 11993100, true);
@@ -64,7 +65,7 @@ public class Main {
         //Ingresar Colectivo Guillermo
         ColectivoData cole = new ColectivoData();
 //
-//        Colectivo cole1 = new Colectivo("RB 111 AB", "Scania-SABB", "114", 40, true);
+        Colectivo cole1 = new Colectivo("RB 111 AB", "Scania-SABB", "114", 40, true);
 //        Colectivo cole2 = new Colectivo("RW 222 WX", "Mercedes-Benz", "1114", 45, true);
 //        Colectivo cole3 = new Colectivo("RK 333 KJ", "Fiat", "560", 35, true);
 //        Colectivo cole4 = new Colectivo("RD 444 SD", "Volvo", "580", 50, true);
@@ -134,7 +135,7 @@ public class Main {
         
         RutaData rutData = new RutaData();
         
-//        Ruta ruta1 = new Ruta("San Luis", "La Punta", LocalTime.of(1, 00), true);
+       Ruta ruta1 = new Ruta("San Luis", "La Punta", LocalTime.of(1, 00), true);
 //        Ruta ruta2 = new Ruta("La Punta", "San Luis", LocalTime.of(1, 00), true);
 //        Ruta ruta3 = new Ruta("Merlo", "San Luis", LocalTime.of(1, 20), true);
 //        Ruta ruta4 = new Ruta("La Punta", "Merlo",LocalTime.of(1, 20), true);
@@ -196,9 +197,30 @@ public class Main {
 //        
 //        
 //    }
+
+
+        PasajeData pasa = new PasajeData();
+        
+        
+        Pasaje pasaje = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
+        Pasaje pasaje1 = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
+        pasa.registrarVenta(pasaje);
+        pasa.registrarVenta(pasaje1);
+
+        pasa.eliminarPasaje(pasaje1);
+        
+        Pasaje pasaje3 = new Pasaje(1,pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
+        pasa.modificarPasaje(pasaje3);
+        
+        List<Pasaje> pasajesActivos = pasa.mostrarPasajesVendidos();
+        System.out.println("Mostrar pasajes ");
+        
+        for (Pasaje p : pasajesActivos) {
+            System.out.println(p.toString());    
+        }
     }
     
-    PasajeData pasa = new PasajeData();
+    
  
     
 }
