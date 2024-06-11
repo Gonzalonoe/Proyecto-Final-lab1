@@ -56,7 +56,11 @@
                       <Component id="jButton2" min="-2" pref="147" max="-2" attributes="0"/>
                   </Group>
               </Group>
+<<<<<<< Updated upstream
               <EmptySpace pref="257" max="32767" attributes="0"/>
+=======
+              <EmptySpace pref="69" max="32767" attributes="0"/>
+>>>>>>> Stashed changes
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,7 +85,11 @@
                   <Component id="jButton1" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
+<<<<<<< Updated upstream
               <EmptySpace max="32767" attributes="0"/>
+=======
+              <EmptySpace pref="106" max="32767" attributes="0"/>
+>>>>>>> Stashed changes
           </Group>
       </Group>
     </DimensionLayout>
