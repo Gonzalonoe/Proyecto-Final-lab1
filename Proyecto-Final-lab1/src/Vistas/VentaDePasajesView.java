@@ -33,53 +33,48 @@ import javax.swing.table.DefaultTableModel;
 
 public class VentaDePasajesView extends javax.swing.JInternalFrame {
 
-   private List<Ruta> listaRutas;
-   private List<Horario> listaHorarios;
-   private List<Colectivo> listaColectivos;
-   private List<Pasajero> listaPasajeros;
-   private List<Integer> asientos;
-   
-   private RutaData rutData;
-   private HorarioData horData;
-   private ColectivoData colData;
-   private PasajeroData pasData;
-   private PasajeData psjData;
-   
-   
-   private DefaultTableModel modelo;
-   
+    private List<Ruta> listaRutas;
+    private List<Horario> listaHorarios;
+    private List<Colectivo> listaColectivos;
+    private List<Pasajero> listaPasajeros;
+    private List<Integer> asientos;
+
+    private RutaData rutData;
+    private HorarioData horData;
+    private ColectivoData colData;
+    private PasajeroData pasData;
+    private PasajeData psjData;
+
+    private DefaultTableModel modelo;
+
     public VentaDePasajesView() {
         initComponents();
 
-        modelo = new DefaultTableModel(){
+        modelo = new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int row,int column){
-                    return false;     
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
         };
 
         rutData = new RutaData();
         listaRutas = rutData.obtenerRutas();
-        horData= new HorarioData();
+        horData = new HorarioData();
         listaHorarios = new ArrayList<Horario>();
         colData = new ColectivoData();
         listaColectivos = colData.listarColectivos();
-        pasData=new PasajeroData();
+        pasData = new PasajeroData();
         psjData = new PasajeData();
-       
-        
-       // TextPrompt placeholder = new TextPrompt("Dni",jtDniPasajero) ;
-        
-        
-        jdFechaViaje.setSelectableDateRange(Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now()));
-        
+
+        // TextPrompt placeholder = new TextPrompt("Dni",jtDniPasajero) ;
+        jdFechaViaje.setSelectableDateRange(Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now()));
+
         cargarRutas();
         cargarColectivos();
-        
+
         armarCabeceraTabla();
         activarIngreso(false);
-       
-        
+
     }
 
     /**
@@ -385,78 +380,67 @@ public class VentaDePasajesView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCRutasActionPerformed
-        
-    borrarFilas();
-    cargarHorarios();
-    jTHorarios.setEnabled(true);
+
+        borrarFilas();
+        cargarHorarios();
+        jTHorarios.setEnabled(true);
     }//GEN-LAST:event_jCRutasActionPerformed
 
     private void jcColectivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcColectivosActionPerformed
-        
-        
-        
+
 //        Colectivo coleSeleccionado = (Colectivo) jcColectivos.getSelectedItem();
 //        
 //        int capacidad = coleSeleccionado.getCapacidad();
 //        
 //        jtfPasajesDisponibles.setText(""+capacidad);
-        
+
     }//GEN-LAST:event_jcColectivosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
 
         int filaSelecionada = jTHorarios.getSelectedRow();
-       
-        if (filaSelecionada!=-1){
-            
-        Colectivo coleSeleccionado = (Colectivo) jcColectivos.getSelectedItem();
-        int index = jcColectivos.getSelectedIndex();
 
-        Ruta rutaSeleccionada = (Ruta) jCRutas.getSelectedItem();
+        if (filaSelecionada != -1) {
 
-        Object valorCelda = jTHorarios.getValueAt(filaSelecionada, 0);
-        String horaSeleccionada = valorCelda.toString();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime hora = LocalTime.parse(horaSeleccionada, formatter);
-        
-        String dni = jtDniPasajero.getText();
-        Pasajero pasajeroSeleccionado = pasData.buscarPasajeroPorDNI(Integer.parseInt(dni));
-        
-        int nroAsiento = (int) jcAsientos.getSelectedItem();
-        
-        java.util.Date sFecha = jdFechaViaje.getDate();
-        LocalDate fecha = sFecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        Double precio = Double.parseDouble(jtfPrecio.getText());
-        
-        
-      Pasaje pasajeNuevo = new Pasaje(pasajeroSeleccionado, coleSeleccionado, rutaSeleccionada, fecha, hora, nroAsiento, precio);
-        
-      psjData.registrarVenta(pasajeNuevo);
-      
-      cargarAsientos(coleSeleccionado.getCapacidad());
-            
-            if (asientos.size()==coleSeleccionado.getCapacidad()-1) {
-                
+            Colectivo coleSeleccionado = (Colectivo) jcColectivos.getSelectedItem();
+            int index = jcColectivos.getSelectedIndex();
+
+            Ruta rutaSeleccionada = (Ruta) jCRutas.getSelectedItem();
+
+            Object valorCelda = jTHorarios.getValueAt(filaSelecionada, 0);
+            String horaSeleccionada = valorCelda.toString();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime hora = LocalTime.parse(horaSeleccionada, formatter);
+
+            String dni = jtDniPasajero.getText();
+            Pasajero pasajeroSeleccionado = pasData.buscarPasajeroPorDNI(Integer.parseInt(dni));
+
+            int nroAsiento = (int) jcAsientos.getSelectedItem();
+
+            java.util.Date sFecha = jdFechaViaje.getDate();
+            LocalDate fecha = sFecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            Double precio = Double.parseDouble(jtfPrecio.getText());
+
+            Pasaje pasajeNuevo = new Pasaje(pasajeroSeleccionado, coleSeleccionado, rutaSeleccionada, fecha, hora, nroAsiento, precio);
+
+            psjData.registrarVenta(pasajeNuevo);
+
+            cargarAsientos(coleSeleccionado.getCapacidad());
+
+            if (asientos.size() == coleSeleccionado.getCapacidad() - 1) {
+
                 colData.eliminarColectivo(coleSeleccionado);
                 cargarColectivos();
             }
-        
-        
-         
-        
-        
+
         }
-       
-            
-            
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jtfPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPrecioActionPerformed
@@ -468,48 +452,45 @@ dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jcAsientosActionPerformed
 
     private void jTHorariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTHorariosFocusGained
-        
-              
+
+
     }//GEN-LAST:event_jTHorariosFocusGained
 
     private void jTHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTHorariosMouseClicked
-      
+
         int filaSelecionada = jTHorarios.getSelectedRow();
-        if (filaSelecionada!=-1) {
-        activarIngreso(true);
-        jButton1.setEnabled(true);
-            
-        Colectivo coleSeleccionado = (Colectivo) jcColectivos.getSelectedItem();
-        Ruta rutaSeleccionada = (Ruta) jCRutas.getSelectedItem();
-       
-        Object valorCelda = jTHorarios.getValueAt(filaSelecionada, 0);
-        String horaSeleccionada = valorCelda.toString();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime hora = LocalTime.parse(horaSeleccionada, formatter);
-        
-        asientos = psjData.asientosOcupados(coleSeleccionado.getIdColectivo(), rutaSeleccionada.getIdRuta(),hora);
-        
-        
-        
-        cargarAsientos(coleSeleccionado.getCapacidad());  
-        
-        
+        if (filaSelecionada != -1) {
+            activarIngreso(true);
+            jButton1.setEnabled(true);
+
+            Colectivo coleSeleccionado = (Colectivo) jcColectivos.getSelectedItem();
+            Ruta rutaSeleccionada = (Ruta) jCRutas.getSelectedItem();
+
+            Object valorCelda = jTHorarios.getValueAt(filaSelecionada, 0);
+            String horaSeleccionada = valorCelda.toString();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime hora = LocalTime.parse(horaSeleccionada, formatter);
+
+            asientos = psjData.asientosOcupados(coleSeleccionado.getIdColectivo(), rutaSeleccionada.getIdRuta(), hora);
+
+            cargarAsientos(coleSeleccionado.getCapacidad());
+
         }
-        
+
     }//GEN-LAST:event_jTHorariosMouseClicked
 
     private void jbBuscarPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPasajeroActionPerformed
-      
+
         Pasajero pasajero = pasData.buscarPasajeroPorDNI(Integer.parseInt(jtDniPasajero.getText()));
-        
+
         jtfMostrarNombre.setText(pasajero.getNombre());
         jtfMostrarApellido.setText(pasajero.getApellido());
-        jtfMostrarID.setText(pasajero.getIdPasajero()+"");
+        jtfMostrarID.setText(pasajero.getIdPasajero() + "");
     }//GEN-LAST:event_jbBuscarPasajeroActionPerformed
-    
+
     private void cargarAsientos(int capacidad) {
         jcAsientos.removeAllItems();
-        
+
         for (int i = 1; i <= capacidad; i++) {
             if (!asientos.contains(i)) {
                 jcAsientos.addItem(i);
@@ -560,9 +541,9 @@ dispose();        // TODO add your handling code here:
     }
 
     private void cargarColectivos() {
-        
+
         jcColectivos.removeAllItems();
-        
+
         for (Colectivo item : listaColectivos) {
             if (item.isEstado() == true) {
                 jcColectivos.addItem(item);
@@ -571,21 +552,19 @@ dispose();        // TODO add your handling code here:
         }
     }
 
-    
-     
-    private void activarIngreso(boolean sino){
-        
+    private void activarIngreso(boolean sino) {
+
         for (Component component : jPanelIngreso.getComponents()) {
-            component.setEnabled(sino); 
-            
-        jButton1.setEnabled(sino);
-        jTHorarios.setEnabled(sino);
-        
-}
-        
+            component.setEnabled(sino);
+
+            jButton1.setEnabled(sino);
+            jTHorarios.setEnabled(sino);
+
+        }
+
     }
-        
-        
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
