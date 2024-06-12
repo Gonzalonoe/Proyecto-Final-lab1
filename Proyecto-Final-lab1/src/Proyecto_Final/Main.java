@@ -202,22 +202,22 @@ public class Main {
         PasajeData pasa = new PasajeData();
         
         
-        Pasaje pasaje = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
-        Pasaje pasaje1 = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
-        pasa.registrarVenta(pasaje);
-        pasa.registrarVenta(pasaje1);
-
-        pasa.eliminarPasaje(pasaje1);
-        
-        Pasaje pasaje3 = new Pasaje(1,pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
-        pasa.modificarPasaje(pasaje3);
-        
-        List<Pasaje> pasajesActivos = pasa.mostrarPasajesVendidos();
-        System.out.println("Mostrar pasajes ");
-        
-        for (Pasaje p : pasajesActivos) {
-            System.out.println(p.toString());    
-        }
+//        Pasaje pasaje = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
+//        Pasaje pasaje1 = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
+//        pasa.registrarVenta(pasaje);
+//        pasa.registrarVenta(pasaje1);
+//
+//        pasa.eliminarPasaje(pasaje1);
+//        
+//        Pasaje pasaje3 = new Pasaje(1,pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
+//        pasa.modificarPasaje(pasaje3);
+//        
+//        List<Pasaje> pasajesActivos = pasa.mostrarPasajesVendidos();
+//        System.out.println("Mostrar pasajes ");
+//        
+//        for (Pasaje p : pasajesActivos) {
+//            System.out.println(p.toString());    
+//        }
     }
     
     
