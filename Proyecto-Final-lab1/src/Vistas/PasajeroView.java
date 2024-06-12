@@ -241,7 +241,6 @@ public class PasajeroView extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         
-        
        Integer dni=Integer.parseInt(jTFdni.getText()); 
        String nombre = jTFNombre.getText();
        String apellido = jTFApellido.getText();
@@ -252,6 +251,7 @@ public class PasajeroView extends javax.swing.JInternalFrame {
         if(PasajeroActual==null){
             PasajeroActual=new Pasajero(nombre, apellido, dni, correo , telefono, estado);
             PasData.agregarPasajero(PasajeroActual);
+        
         }else{
             PasajeroActual.setDni(dni);
             PasajeroActual.setNombre(nombre);
@@ -274,7 +274,7 @@ public class PasajeroView extends javax.swing.JInternalFrame {
          jTFApellido.setText("");
          jTFCorreo.setText("");
          jTFTelefono.setText("");
-         jRadioButton1.setSelected(true);
+         jRadioButton1.setSelected(false);
      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
