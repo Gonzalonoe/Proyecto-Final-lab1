@@ -242,49 +242,17 @@ public class PasajeroView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        if (PasajeroActual!=null) {
-        Pattern p=Pattern.compile("\\d{1,15}");
-        Matcher m=p.matcher(jTFdni.getText());
-        if(!m.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
-            jTFdni.requestFocus();
-            return;
-        }
-        Pattern pa=Pattern.compile("[a-z].*");
-        Matcher ma=pa.matcher(jTFNombre.getText());
-        if(!ma.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. letras");
-            jTFNombre.requestFocus();
-            return;
-        }
-        Pattern pat=Pattern.compile("[a-z].*");
-        Matcher mat=pat.matcher(jTFApellido.getText());
-        if(!mat.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. letras");
-            jTFApellido.requestFocus();
-            return;
-        }
-        Pattern patt=Pattern.compile("[a-z].*");
-        Matcher matc=patt.matcher(jTFCorreo.getText());
-        if(!matc.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. letras");
-            jTFCorreo.requestFocus();
-            return;
-        }
+        
         
        Integer dni=Integer.parseInt(jTFdni.getText()); 
        String nombre = jTFNombre.getText();
        String apellido = jTFApellido.getText();
        String correo = jTFCorreo.getText();
        String telefono=jTFTelefono.getText();
-        if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
-            return;
-        }
-        Boolean estado = jRadioButton1.isSelected();
+       Boolean estado = jRadioButton1.isSelected();
         
         if(PasajeroActual==null){
-            PasajeroActual=new Pasajero(dni, nombre, apellido, correo , telefono, estado);
+            PasajeroActual=new Pasajero(nombre, apellido, dni, correo , telefono, estado);
             PasData.agregarPasajero(PasajeroActual);
         }else{
             PasajeroActual.setDni(dni);
@@ -294,9 +262,6 @@ public class PasajeroView extends javax.swing.JInternalFrame {
             PasajeroActual.setTelefono(telefono);
             PasajeroActual.setEstado(estado);
             PasData.modificarPasajero(PasajeroActual);
-        }
-        }else{
-            JOptionPane.showMessageDialog(null, "No hay un Alumno seleccionado");
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
