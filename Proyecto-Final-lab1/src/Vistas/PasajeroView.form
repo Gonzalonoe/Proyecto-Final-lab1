@@ -185,9 +185,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFdni">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -210,19 +207,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNombre">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFApellido">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFCorreo">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jBNuevo">
           <Properties>
@@ -262,9 +250,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFTelefono">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton1">
           <Events>

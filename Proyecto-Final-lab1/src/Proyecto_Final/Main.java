@@ -23,7 +23,7 @@ public class Main {
        // Ingreso Pasajeros
         PasajeroData pas = new PasajeroData();
 
-       Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
+//        Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", "29931002", true);
 //        Pasajero pas2 = new Pasajero("Jose", "Arias", 1238821, "josearias@gmail.com", 23523121, true);
 //        Pasajero pas3 = new Pasajero("Gonzalo", "Gonzaloes", 2329891, "gonzalogonzales@gmail.com", 26642912, true);
 //        Pasajero pas4 = new Pasajero("Pedro", "Martinez", 23778990, "pedrom@gmail.com", 11993100, true);
@@ -65,7 +65,7 @@ public class Main {
         //Ingresar Colectivo Guillermo
         ColectivoData cole = new ColectivoData();
 //
-        Colectivo cole1 = new Colectivo("RB 111 AB", "Scania-SABB", "114", 40, true);
+//        Colectivo cole1 = new Colectivo("RB 111 AB", "Scania-SABB", "114", 40, true);
 //        Colectivo cole2 = new Colectivo("RW 222 WX", "Mercedes-Benz", "1114", 45, true);
 //        Colectivo cole3 = new Colectivo("RK 333 KJ", "Fiat", "560", 35, true);
 //        Colectivo cole4 = new Colectivo("RD 444 SD", "Volvo", "580", 50, true);

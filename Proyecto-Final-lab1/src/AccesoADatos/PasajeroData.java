@@ -39,7 +39,7 @@ public class PasajeroData {
             ps.setString(2, pasajero.getApellido());
             ps.setInt(3, pasajero.getDni());
             ps.setString(4, pasajero.getCorreo());
-            ps.setInt(5, pasajero.getTelefono());
+            ps.setString(5, pasajero.getTelefono());
             ps.setBoolean(6, true);
             ps.executeUpdate();
 
@@ -63,7 +63,7 @@ public class PasajeroData {
             ps.setString(1, pasajero.getNombre());
             ps.setString(2, pasajero.getApellido());
             ps.setString(3, pasajero.getCorreo());
-            ps.setInt(4, pasajero.getTelefono());
+            ps.setString(4, pasajero.getTelefono());
             ps.setBoolean(5, true);
             ps.setInt(6, pasajero.getDni());
             
@@ -116,7 +116,7 @@ public class PasajeroData {
                 pasajero.setNombre(rs.getString("Nombre"));
                 pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setCorreo(rs.getString("Correo"));
-                pasajero.setTelefono(rs.getInt("Telefono"));
+                pasajero.setTelefono(rs.getString("Telefono"));
                 pasajero.setEstado(rs.getBoolean("Estado"));
 
             } else {
@@ -148,7 +148,7 @@ public class PasajeroData {
                 pasajero.setIdPasajero(rs.getInt("ID_pasajero"));
                 pasajero.setDni(rs.getInt("DNI"));
                 pasajero.setCorreo(rs.getString("Correo"));
-                pasajero.setTelefono(rs.getInt("Telefono"));
+                pasajero.setTelefono(rs.getString("Telefono"));
                 pasajero.setEstado(rs.getBoolean("Estado"));
 
             } else {
@@ -177,7 +177,7 @@ public class PasajeroData {
                 pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setDni(rs.getInt("DNI"));
                 pasajero.setCorreo(rs.getString("Correo"));
-                pasajero.setTelefono(rs.getInt("Telefono"));
+                pasajero.setTelefono(rs.getString("Telefono"));
 
                 pasajeros.add(pasajero);
 
@@ -189,10 +189,25 @@ public class PasajeroData {
         return pasajeros;
 
     }
-
     
-    
-    
-    
+    public void eliminarPasajeroID(int ID_Pasajero){
+        
+        String sql = "UPDATE Pasajeros SET estado = 0 WHERE ID_Pasajero = ? ";
+        
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, ID_Pasajero);
+            
+           int registro= ps.executeUpdate();
+            
+            if (registro==1) {
+                JOptionPane.showMessageDialog(null, "Pasajero eliminado");
+            }
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+        }
+}
 }
 

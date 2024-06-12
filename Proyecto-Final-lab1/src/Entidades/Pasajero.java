@@ -8,13 +8,13 @@ public class Pasajero {
     private String apellido;
     private int dni;
     private String correo;
-    private int telefono;
+    private String telefono;
     private boolean estado;
     
     public Pasajero(){
     }
     
-    public Pasajero(String nombre, String apellido, int dni, String correo, int telefono, boolean estado){
+    public Pasajero(String nombre, String apellido, int dni, String correo, String telefono, boolean estado){
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -23,7 +23,7 @@ public class Pasajero {
         this.estado = estado;
     }
     
-   public Pasajero(int idPasajero, String nombre, String apellido, int dni, String correo, int telefono, boolean estado){
+   public Pasajero(int idPasajero, String nombre, String apellido, int dni, String correo, String telefono, boolean estado){
         this.ID_Pasajero = idPasajero;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -73,11 +73,11 @@ public class Pasajero {
         this.correo = correo;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

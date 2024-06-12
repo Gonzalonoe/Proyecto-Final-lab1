@@ -70,8 +70,6 @@ public class PasajeroView extends javax.swing.JInternalFrame {
             }
         });
 
-        jTFdni.setEditable(false);
-
         jLabel3.setText("Nombre:");
 
         jLabel4.setText("Apellido:");
@@ -79,12 +77,6 @@ public class PasajeroView extends javax.swing.JInternalFrame {
         jLabel5.setText("Correo:");
 
         jLabel6.setText("Telefono:");
-
-        jTFNombre.setEditable(false);
-
-        jTFApellido.setEditable(false);
-
-        jTFCorreo.setEditable(false);
 
         jBNuevo.setText("Nuevo");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -115,8 +107,6 @@ public class PasajeroView extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Estado:");
-
-        jTFTelefono.setEditable(false);
 
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,27 +232,27 @@ public class PasajeroView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        Integer dni=Integer.parseInt(jTFdni.getText()); 
-        
+        Integer dni=Integer.parseInt(jTFdni.getText());  
     PasajeroActual = PasData.buscarPasajeroPorDNI(dni);
         if (PasajeroActual!=null) {
             
             jTFNombre.setText(PasajeroActual.getNombre());
             jTFApellido.setText(PasajeroActual.getApellido());
             jTFCorreo.setText(PasajeroActual.getCorreo());
+            jTFTelefono.setText(PasajeroActual.getTelefono());
             jRadioButton1.setSelected(PasajeroActual.isEstado());
         }
 
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-      //  if (PasajeroActual!=null) {
-      //    PasData.eliminarPasajero(PasajeroActual.getDni());
-      //    PasajeroActual=null;
-      //    limpiarCampos();
-      //  }else{
-      //      JOptionPane.showMessageDialog(null, "No hay pasajero seleccionado");
-      //  }
+        if (PasajeroActual!=null) {
+          PasData.eliminarPasajeroID(PasajeroActual.getIdPasajero());
+          PasajeroActual=null;
+          limpiarCampos();
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay pasajero seleccionado");
+        }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -295,18 +285,12 @@ public class PasajeroView extends javax.swing.JInternalFrame {
             jTFCorreo.requestFocus();
             return;
         }
-        Pattern patte=Pattern.compile("\\d{1,15}");
-        Matcher match=patte.matcher(jTFTelefono.getText());
-        if(!match.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
-            jTFTelefono.requestFocus();
-            return;
-        }
+        
        Integer dni=Integer.parseInt(jTFdni.getText()); 
        String nombre = jTFNombre.getText();
        String apellido = jTFApellido.getText();
        String correo = jTFCorreo.getText();
-       Integer telefono=Integer.parseInt(jTFTelefono.getText());
+       String telefono=jTFTelefono.getText();
         if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
             return;
