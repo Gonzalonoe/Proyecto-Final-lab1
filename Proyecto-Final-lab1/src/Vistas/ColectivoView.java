@@ -10,10 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Falivene
- */
+
 public class ColectivoView extends javax.swing.JInternalFrame {
 
     private ColectivoData coleData = new ColectivoData();
