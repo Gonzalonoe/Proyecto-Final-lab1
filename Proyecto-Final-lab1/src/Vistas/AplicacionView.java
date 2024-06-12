@@ -195,14 +195,14 @@ public class AplicacionView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-//            escritorio.removeAll();
-//            escritorio.repaint();
-//            ColectivoView form = new ColectivoView();
-//            form.setVisible(true);
-//            form.getContentPane().setBackground(new Color(255,255,255));
-//            form.setLocation(50, 50);
-//            form.setSize(600,600);
-//            escritorio.add(form); 
+            escritorio.removeAll();
+            escritorio.repaint();
+            ColectivoView form = new ColectivoView();
+            form.setVisible(true);
+            form.getContentPane().setBackground(new Color(255,255,255));
+            form.setLocation(50, 50);
+            form.setSize(600,600);
+            escritorio.add(form); 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -239,7 +239,7 @@ public class AplicacionView extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        HorarioView form = new HorarioView();
+        HorariosView form = new HorariosView();
         form.setVisible(true);
         form.getContentPane().setBackground(new Color(255, 255, 255));
         form.setLocation(50, 50);
