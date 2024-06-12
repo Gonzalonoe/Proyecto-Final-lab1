@@ -4,11 +4,20 @@
  */
 package Vistas;
 
+import AccesoADatos.ColectivoData;
+import Entidades.Colectivo;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Falivene
  */
 public class ColectivoView extends javax.swing.JInternalFrame {
+
+    private ColectivoData coleData = new ColectivoData();
+    private Colectivo coleActual = null;
 
     /**
      * Creates new form ColectivoView
@@ -33,16 +42,16 @@ public class ColectivoView extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTFMatricula = new javax.swing.JTextField();
         jBBuscar = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        jTFMarca = new javax.swing.JTextField();
+        jTFModelo = new javax.swing.JTextField();
+        jTFCapacidad = new javax.swing.JTextField();
         jBEliminar = new javax.swing.JButton();
         jBNuevo = new javax.swing.JButton();
         jBGuardar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
+        jRBEstado = new javax.swing.JRadioButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -70,9 +79,9 @@ public class ColectivoView extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Estado:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTFMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTFMatriculaActionPerformed(evt);
             }
         });
 
@@ -83,28 +92,51 @@ public class ColectivoView extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTFMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTFMarcaActionPerformed(evt);
             }
         });
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTFModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTFModeloActionPerformed(evt);
             }
         });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.setEnabled(false);
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBNuevo.setText("Nuevo");
+        jBNuevo.setEnabled(false);
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
 
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalirActionPerformed(evt);
+            }
+        });
+
+        jRBEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBEstadoActionPerformed(evt);
             }
         });
 
@@ -123,21 +155,25 @@ public class ColectivoView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jBNuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jBEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(jBGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addComponent(jBSalir))
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField1))
-                .addGap(18, 18, 18)
-                .addComponent(jBBuscar)
-                .addGap(36, 36, 36))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBNuevo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addComponent(jBEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                                .addComponent(jBGuardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                .addComponent(jBSalir))
+                            .addComponent(jTFMarca)
+                            .addComponent(jTFModelo)
+                            .addComponent(jTFCapacidad)
+                            .addComponent(jTFMatricula))
+                        .addGap(18, 18, 18)
+                        .addComponent(jBBuscar)
+                        .addGap(36, 36, 36))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jRBEstado)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(255, 255, 255)
                 .addComponent(jLabel1)
@@ -151,31 +187,31 @@ public class ColectivoView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1)
+                    .addComponent(jTFMatricula)
                     .addComponent(jBBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2))
+                    .addComponent(jTFMarca))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRBEstado))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBEliminar)
                     .addComponent(jBNuevo)
                     .addComponent(jBGuardar)
                     .addComponent(jBSalir))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,7 +219,7 @@ public class ColectivoView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -194,27 +230,122 @@ public class ColectivoView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTFMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMatriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTFMatriculaActionPerformed
+    //Verificamos el formato de la patente
+    // Definir los patrones de expresión regular para las patentes
+    private static final String VIEJO_FORMATO_REGEX = "^[A-Z]{3} [0-9]{3,4}$";
+    private static final String NUEVO_FORMATO_REGEX = "^[A-Z]{2} [0-9]{3} [A-Z]{2}$";
+
+    // Método auxiliar para machear la patente con un patrón de expresión regular
+    private static boolean machearPatente(String patente, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(patente);
+        return matcher.matches();
+    }
+
+    public static boolean esPatenteValida(String patente) {
+        return machearPatente(patente, VIEJO_FORMATO_REGEX) || machearPatente(patente, NUEVO_FORMATO_REGEX);
+    }
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        // TODO add your handling code here:
+        String mat = jTFMatricula.getText();
+        if (esPatenteValida(mat)) {
+            String matricula = jTFMatricula.getText();
+            coleActual = coleData.buscarColectivoMatricula(matricula);
+            if (coleActual != null) {
+                jTFMarca.setText(coleActual.getMarca());
+                jTFModelo.setText(coleActual.getModelo());
+                jTFCapacidad.setText(coleActual.getCapacidad() + "");
+                jRBEstado.setSelected(coleActual.isEstado());
+            }
+        } else {
+             
+            JOptionPane.showMessageDialog(null, "Formato Invalido de Matricula\nFormato nuevo: XXX 123 XX\nFormato viejo: XXX 1234");
+        }
+        jBNuevo.setEnabled(true);
+        jBEliminar.setEnabled(true);
+
+
     }//GEN-LAST:event_jBBuscarActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTFModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFModeloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTFModeloActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
+    private void jTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFMarcaActionPerformed
+
+    private void jRBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRBEstadoActionPerformed
+
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+        coleActual = null;
+    }//GEN-LAST:event_jBNuevoActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+
+        if (coleActual != null) {
+            String matricula = jTFMatricula.getText();
+            String marca = jTFMarca.getText();
+            String modelo = jTFModelo.getText();
+            Integer capacidad = Integer.parseInt(jTFCapacidad.getText());
+            
+            if (matricula.isEmpty() || marca.isEmpty() || modelo.isEmpty() || capacidad == null) {
+                JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
+                return;
+            }
+            Boolean estado = jRBEstado.isSelected();
+            if (coleActual == null) {
+                coleActual = new Colectivo(matricula,marca,modelo,capacidad,estado);
+                coleData.guardarColectivo(coleActual);
+            }else{
+                
+                Colectivo colenuevo = new Colectivo();
+//                coleActual.setIdColectivo(0);
+//                coleActual.setMatricula(matricula);
+//                coleActual.setMarca(marca);
+//                coleActual.setModelo(modelo);
+//                coleActual.setCapacidad(capacidad);
+//                coleActual.setEstado(estado);
+//                coleData.modificarColectivo(coleActual);   
+                limpiarCampos();
+                
+                JOptionPane.showMessageDialog(null, "Colectivo actualizado correctamente");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay un Colectivo seleccionado");
+        }
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+
+        if (coleActual != null) {
+            coleData.eliminarColectivo(coleActual);
+            coleActual = null;
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay un Colectivo seleccionado");
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+    private void limpiarCampos() {
+
+        jTFMatricula.setText("");
+        jTFMarca.setText("");
+        jTFModelo.setText("");
+        jTFCapacidad.setText("");
+        jRBEstado.setSelected(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
@@ -229,10 +360,10 @@ public class ColectivoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JRadioButton jRBEstado;
+    private javax.swing.JTextField jTFCapacidad;
+    private javax.swing.JTextField jTFMarca;
+    private javax.swing.JTextField jTFMatricula;
+    private javax.swing.JTextField jTFModelo;
     // End of variables declaration//GEN-END:variables
 }
