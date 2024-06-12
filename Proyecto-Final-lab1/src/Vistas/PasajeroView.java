@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class PasajeroView extends javax.swing.JInternalFrame {
       private PasajeroData PasData = new PasajeroData();
       private Pasajero PasajeroActual = null;
-   
+ //  
     public PasajeroView() {
         initComponents();
     }
