@@ -292,37 +292,30 @@ public class ColectivoView extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
 
-        if (coleActual != null) {
+        // datos ingresados
             String matricula = jTFMatricula.getText();
             String marca = jTFMarca.getText();
             String modelo = jTFModelo.getText();
             Integer capacidad = Integer.parseInt(jTFCapacidad.getText());
-            
-            if (matricula.isEmpty() || marca.isEmpty() || modelo.isEmpty() || capacidad == null) {
-                JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
-                return;
-            }
             Boolean estado = jRBEstado.isSelected();
+            //verifica sicoleActual esta vacia (null) y  ingresa los nuevos registros
             if (coleActual == null) {
                 coleActual = new Colectivo(matricula,marca,modelo,capacidad,estado);
                 coleData.guardarColectivo(coleActual);
+                // si coloActal no esta vacio verifica los set agregados en las tablas y gurda los cambios
             }else{
                 
-                Colectivo colenuevo = new Colectivo();
-//                coleActual.setIdColectivo(0);
-//                coleActual.setMatricula(matricula);
-//                coleActual.setMarca(marca);
-//                coleActual.setModelo(modelo);
-//                coleActual.setCapacidad(capacidad);
-//                coleActual.setEstado(estado);
-//                coleData.modificarColectivo(coleActual);   
+                coleActual.setMatricula(matricula);
+                coleActual.setMarca(marca);
+                coleActual.setModelo(modelo);
+                coleActual.setCapacidad(capacidad);
+                coleActual.setEstado(estado);
+                // coleData.modificarColectivo(coleActual) llama el metodo desde coloctivoData y modifica 
+                coleData.modificarColectivo(coleActual);   
                 limpiarCampos();
                 
                 JOptionPane.showMessageDialog(null, "Colectivo actualizado correctamente");
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "No hay un Colectivo seleccionado");
-        }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
