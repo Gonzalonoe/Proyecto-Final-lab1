@@ -134,7 +134,7 @@
                       <Component id="jBGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <EmptySpace pref="126" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -201,7 +201,6 @@
         <Component class="javax.swing.JButton" name="jBEliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarActionPerformed"/>
@@ -210,7 +209,6 @@
         <Component class="javax.swing.JButton" name="jBNuevo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBNuevoActionPerformed"/>

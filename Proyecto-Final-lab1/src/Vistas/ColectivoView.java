@@ -102,7 +102,6 @@ public class ColectivoView extends javax.swing.JInternalFrame {
         });
 
         jBEliminar.setText("Eliminar");
-        jBEliminar.setEnabled(false);
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
@@ -110,7 +109,6 @@ public class ColectivoView extends javax.swing.JInternalFrame {
         });
 
         jBNuevo.setText("Nuevo");
-        jBNuevo.setEnabled(false);
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBNuevoActionPerformed(evt);
