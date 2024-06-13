@@ -1,4 +1,8 @@
-package Proyecto_Final;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package proyectofinal_solbus;
 
 import AccesoADatos.ColectivoData;
 import AccesoADatos.HorarioData;
@@ -6,7 +10,6 @@ import AccesoADatos.PasajeData;
 import AccesoADatos.PasajeroData;
 import AccesoADatos.RutaData;
 import Entidades.Colectivo;
-import Entidades.Horario;
 import Entidades.Pasaje;
 import Entidades.Pasajero;
 import Entidades.Ruta;
@@ -15,15 +18,20 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+/**
+ *
+ * @author emanu
+ */
+public class ProyectoFinal_SolBus {
 
-public class Main {
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-
-       // Ingreso Pasajeros
+// Ingreso Pasajeros
         PasajeroData pas = new PasajeroData();
 
-        Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", "29931002", true);
+ //      Pasajero pas1 = new Pasajero("Gutavo", "Lagos", 43778990, "guslagos@gmail.com", 29931002, true);
 //        Pasajero pas2 = new Pasajero("Jose", "Arias", 1238821, "josearias@gmail.com", 23523121, true);
 //        Pasajero pas3 = new Pasajero("Gonzalo", "Gonzaloes", 2329891, "gonzalogonzales@gmail.com", 26642912, true);
 //        Pasajero pas4 = new Pasajero("Pedro", "Martinez", 23778990, "pedrom@gmail.com", 11993100, true);
@@ -65,7 +73,7 @@ public class Main {
         //Ingresar Colectivo Guillermo
         ColectivoData cole = new ColectivoData();
 //
-        Colectivo cole1 = new Colectivo("RB 111 AB", "Scania-SABB", "114", 40, true);
+       Colectivo cole1 = new Colectivo("RB 111 AB", "Scania-SABB", "114", 40, true);
 //        Colectivo cole2 = new Colectivo("RW 222 WX", "Mercedes-Benz", "1114", 45, true);
 //        Colectivo cole3 = new Colectivo("RK 333 KJ", "Fiat", "560", 35, true);
 //        Colectivo cole4 = new Colectivo("RD 444 SD", "Volvo", "580", 50, true);
@@ -199,9 +207,9 @@ public class Main {
 //    }
 
 
-        PasajeData pasa = new PasajeData();
-        
-        
+//        PasajeData pasa = new PasajeData();
+//        
+//        
 //        Pasaje pasaje = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
 //        Pasaje pasaje1 = new Pasaje(pas1, cole1, ruta1, LocalDate.now(), LocalTime.of(13, 00), 10, 1500);
 //        pasa.registrarVenta(pasaje);
@@ -221,6 +229,12 @@ public class Main {
     }
     
     
- 
     
-}
+    
+    
+    
+    }
+    
+    
+    
+

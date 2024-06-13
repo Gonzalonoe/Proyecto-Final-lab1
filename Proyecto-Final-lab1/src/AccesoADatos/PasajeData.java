@@ -87,13 +87,13 @@ public class PasajeData {
         }
     }
 
-    public void eliminarPasaje(Pasaje pasaje) {
+    public void eliminarPasaje(int idPasaje) {
 
         String sql = "DELETE FROM Pasajes WHERE ID_Pasaje=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, pasaje.getIdPasaje());
+            ps.setInt(1, idPasaje);
 
             int filasEliminadas = ps.executeUpdate();
 
@@ -127,8 +127,9 @@ public class PasajeData {
                 RutaData rutData = new RutaData();
                 Ruta rut = rutData.buscarRutaPorId(rs.getInt("ID_Ruta"));
                 PasajeroData pasData = new PasajeroData();
-                Pasajero pas = pasData.buscarPasajeroPorDNI(rs.getInt("Dni"));
-
+                
+                Pasajero pas = pasData.buscarPasajeroPorID(rs.getInt("ID_Pasajero"));
+                
                 LocalDate fechaViaje = rs.getDate("Fecha_Viaje").toLocalDate();
                 LocalTime horaViaje = rs.getTime("Hora_Viaje").toLocalTime();
                 int asiento = rs.getInt("Asiento");
@@ -178,4 +179,82 @@ public class PasajeData {
         return listaOcupados;
     }
 
+    public List<Pasaje> buscarPasajesPorPasajero(Pasajero pasajero) {
+    List<Pasaje> pasajes = new ArrayList<>();
+    String sql = "SELECT * FROM Pasajes WHERE ID_Pasajero = ?";
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, pasajero.getIdPasajero());
+        ps.setBoolean(2, true);
+        
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int idPasaje = rs.getInt("ID_Pasaje");
+
+            ColectivoData colData = new ColectivoData();
+            Colectivo cole = colData.obtenerColectivoPorId(rs.getInt("ID_Colectivo"));
+            RutaData rutData = new RutaData();
+            Ruta rut = rutData.buscarRutaPorId(rs.getInt("ID_Ruta"));
+            PasajeroData pasData = new PasajeroData();
+            
+            Pasajero pas = pasData.buscarPasajeroPorID(rs.getInt("ID_Pasajero"));
+            
+            LocalDate fechaViaje = rs.getDate("Fecha_Viaje").toLocalDate();
+            LocalTime horaViaje = rs.getTime("Hora_Viaje").toLocalTime();
+            int asiento = rs.getInt("Asiento");
+            double precio = rs.getDouble("Precio");
+            
+
+            Pasaje pasaje = new Pasaje(idPasaje, pas, cole, rut, fechaViaje, horaViaje, asiento, precio);
+            pasajes.add(pasaje);
+        }
+
+        rs.close();
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al buscar pasajes por pasajero: " + ex.getMessage());
+    }
+
+    return pasajes;
+}
+    
+    public List<Pasaje> buscarPasajesPorID(int idPasaje) {
+    List<Pasaje> pasajes = new ArrayList<>();
+    String sql = "SELECT * FROM Pasajes WHERE ID_Pasaje = ?";
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPasaje);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("ID_Pasaje");
+
+            ColectivoData colData = new ColectivoData();
+            Colectivo cole = colData.obtenerColectivoPorId(rs.getInt("ID_Colectivo"));
+            RutaData rutData = new RutaData();
+            Ruta rut = rutData.buscarRutaPorId(rs.getInt("ID_Ruta"));
+            PasajeroData pasData = new PasajeroData();
+            Pasajero pas = pasData.buscarPasajeroPorID(rs.getInt("ID_Pasajero"));
+            
+            LocalDate fechaViaje = rs.getDate("Fecha_Viaje").toLocalDate();
+            LocalTime horaViaje = rs.getTime("Hora_Viaje").toLocalTime();
+            int asiento = rs.getInt("Asiento");
+            double precio = rs.getDouble("Precio");
+
+            Pasaje pasaje = new Pasaje(id, pas, cole, rut, fechaViaje, horaViaje, asiento, precio);
+            pasajes.add(pasaje);
+        }
+
+        rs.close();
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al buscar pasajes por ID: " + ex.getMessage());
+    }
+
+    return pasajes;
+}
+    
 }

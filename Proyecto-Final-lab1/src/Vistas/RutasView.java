@@ -13,7 +13,10 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 
 public class RutasView extends javax.swing.JInternalFrame {
@@ -29,11 +32,11 @@ public class RutasView extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row,int column){
-                    return column != 0;   
+                    return true;   
             }
         };
-        
-        rutas = new  ArrayList<>();
+      
+        rutas = new ArrayList<>();
         rutData = new RutaData();
         
         armarCabeceraTabla();
@@ -103,7 +106,7 @@ public class RutasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbEliminarRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-eliminar-papelera-48.png"))); // NOI18N
+        jbEliminarRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-eliminar-papelera-48_1.png"))); // NOI18N
         jbEliminarRuta.setText("Eliminar");
         jbEliminarRuta.setEnabled(false);
         jbEliminarRuta.addActionListener(new java.awt.event.ActionListener() {
@@ -152,43 +155,42 @@ public class RutasView extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbEliminarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbGuardarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(148, 148, 148)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtDuracionEstimada, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbEliminarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbGuardarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtDuracionEstimada, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jtOrigen)
-                                        .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jtOrigen)
+                                .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -205,14 +207,14 @@ public class RutasView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtDuracionEstimada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(jbEliminarRuta, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(jbGuardarRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -225,33 +227,52 @@ dispose();        // TODO add your handling code here:
 
     private void jbGuardarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarRutaActionPerformed
         
-        if (jtDestino.getText().equals("")&&jtOrigen.equals("")&&jtDuracionEstimada.equals("")) {
-            
-        
-        
-        try {
-                    String origen= jtOrigen.getText();
-                    String destino = jtDestino.getText();
-                    String str = jtDuracionEstimada.getText();
+        if (!jtDestino.getText().isEmpty() && !jtOrigen.getText().isEmpty() 
+                && !jtDuracionEstimada.getText().isEmpty()) {
 
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            try {
+                String origen = jtOrigen.getText();
+                String destino = jtDestino.getText();
+                String str = jtDuracionEstimada.getText();
 
-                    LocalTime duracionEstimada = LocalTime.parse(str, formatter);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-                    Ruta ruta = new Ruta(origen, destino, duracionEstimada, true);
-                    rutData.agregarRuta(ruta);
-        
-                } catch (DateTimeParseException ex) {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar la duracion estimada de la forma hh:mm");
+                LocalTime duracionEstimada = LocalTime.parse(str, formatter);
+
+                Ruta ruta = new Ruta(origen, destino, duracionEstimada, true);
+
+                //controlar que no ingrese 2 rutas con mismo origen y destino
+                boolean esta = false;
+                for (Ruta rut : rutas) {
+                    if (rut.getDestino().equalsIgnoreCase(ruta.getDestino())
+                            && rut.getOrigen().equalsIgnoreCase(ruta.getOrigen())) {
+                        esta = true;
+                        
+                    }
                 }
-            
-    limpiarCampos();
-    
-    }else{
+
+                if (esta) {
+                    JOptionPane.showMessageDialog(null, 
+                   "No puede ingresar 2 rutas con origen y destino iguales");
+                    return;
+                } else {
+                    rutData.agregarRuta(ruta);
+                }
+
+            } catch (DateTimeParseException ex) {
+
+                JOptionPane.showMessageDialog(null, "Debe ingresar la duracion estimada de la forma hh:mm");
+                jtDuracionEstimada.setText("");
+                return;
+            }
+
+            limpiarCampos();
+
+        } else {
             JOptionPane.showMessageDialog(null, "No pueden existir campos vacios");
             return;
         }
-    
+
     }//GEN-LAST:event_jbGuardarRutaActionPerformed
 
     private void jtDuracionEstimadaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDuracionEstimadaFocusGained
@@ -270,20 +291,26 @@ dispose();        // TODO add your handling code here:
        int filaSelecionada = jtRutas.getSelectedRow();
         if (filaSelecionada!=-1) {
             
-            Integer id =  (Integer) jtRutas.getValueAt(filaSelecionada, 0);
-            String origen = (String) jtRutas.getValueAt(filaSelecionada, 1);
-            String destino = (String) jtRutas.getValueAt(filaSelecionada, 2);
+            Object idRutaSeleccioada = jtRutas.getModel().getValueAt(filaSelecionada, 0);
+            int idRuta = (int) idRutaSeleccioada;
+            
+            String origen = (String) jtRutas.getValueAt(filaSelecionada, 0);
+            String destino = (String) jtRutas.getValueAt(filaSelecionada, 1);
+            
             LocalTime duracionEstimada=null;
             try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                    duracionEstimada = LocalTime.parse((String) jtRutas.getValueAt(filaSelecionada, 3),formatter);
+                    Object horaSeleccionada = jtRutas.getValueAt(filaSelecionada, 2);
+                    String hora = horaSeleccionada.toString();
+                    duracionEstimada = LocalTime.parse(hora,formatter);
         
                 } catch (DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar la duracion estimada de la forma hh:mm");
+                    return;
                 }
             
         
-        ruta = new Ruta(id, origen, destino, duracionEstimada, true);
+        ruta = new Ruta(idRuta, origen, destino, duracionEstimada, true);
         
         rutData.modificarRuta(ruta);
             
@@ -323,9 +350,15 @@ dispose();        // TODO add your handling code here:
         int filaSelecionada = jtRutas.getSelectedRow();
         if (filaSelecionada!=-1) {
             
-            Integer id =  (Integer) jtRutas.getValueAt(filaSelecionada, 0);
-        
-            rutData.eliminarRuta(id);
+            String origen  =   (String) jtRutas.getValueAt(filaSelecionada, 0);
+            String destino  =   (String) jtRutas.getValueAt(filaSelecionada, 1);
+            
+            Object idRutaSeleccioada = jtRutas.getModel().getValueAt(filaSelecionada, 0);
+            int idRuta = (int) idRutaSeleccioada;
+            
+            ruta = rutData.buscarRutaPorId(idRuta);
+            
+            rutData.eliminarRuta(ruta.getIdRuta());
             
         }
         
@@ -338,7 +371,7 @@ dispose();        // TODO add your handling code here:
     
     private void armarCabeceraTabla() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
-        filaCabecera.add("Identificador");
+        filaCabecera.add("ID_Ruta");
         filaCabecera.add("Origen");
         filaCabecera.add("Destino");
         filaCabecera.add("Duracion Estimada");
@@ -347,6 +380,11 @@ dispose();        // TODO add your handling code here:
             modelo.addColumn(it);
         }
         jtRutas.setModel(modelo);
+        
+        TableColumnModel columnModel = jtRutas.getColumnModel();
+        TableColumn column = columnModel.getColumn(0);
+        jtRutas.removeColumn(column);
+
     }
 
     private void borrarFilas() {
@@ -362,6 +400,7 @@ dispose();        // TODO add your handling code here:
 
         for (Ruta rut : rutas) {
             modelo.addRow(new Object[]{rut.getIdRuta(),rut.getOrigen(),rut.getDestino(),rut.getDuracionEstimada()});
+            
         }
 
     }

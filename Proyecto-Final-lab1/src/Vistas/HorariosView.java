@@ -16,51 +16,54 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author emanu
  */
 public class HorariosView extends javax.swing.JInternalFrame {
-
+    
     private DefaultTableModel modeloRutas;
     private DefaultTableModel modeloHorarios;
-
+    
     private List<Ruta> rutas;
     private Ruta ruta;
     private RutaData rutData;
-
+    
     private Horario hor;
     private HorarioData horData;
     private List<Horario> listaHorarios;
-
+    
     public HorariosView() {
         initComponents();
-
-        modeloRutas = new DefaultTableModel() {
+        
+        modeloRutas = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-
+             
         };
-
-        modeloHorarios = new DefaultTableModel() {
+        
+        modeloHorarios = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 0;
+                return column==1;
             }
-
+             
         };
-
-        rutas = new ArrayList<>();
+        
+        rutas = new  ArrayList<>();
         rutData = new RutaData();
-
-        horData = new HorarioData();
-
+        
+        horData = new  HorarioData();
+        
+        
         armarCabeceraTablaRutas();
         armarCabeceraTablaHorarios();
-
+       
     }
 
     /**
@@ -307,57 +310,58 @@ public class HorariosView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtOrigenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtOrigenKeyReleased
-
+      
         borrarFilas(modeloRutas);
-
+        
         String origen = jtOrigen.getText().toLowerCase();
         rutas = rutData.buscarRutas(origen, "");
-
+        
         cargarRutas(rutas);
         jtRutas.setEnabled(true);
     }//GEN-LAST:event_jtOrigenKeyReleased
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        dispose();        // TODO add your handling code here:
+dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jtRutasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRutasMouseClicked
-
+       
         jbEliminar.setEnabled(false);
         jbModificar.setEnabled(false);
-
+                
         activarPanel(true);
-
+        
         jtSalida.setText("");
         jtLlegada.setText("");
-
+        
         borrarFilas(modeloHorarios);
         cargarHorarios();
-
+        
     }//GEN-LAST:event_jtRutasMouseClicked
 
     private void jtSalidaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtSalidaFocusLost
         jbGuardar.setEnabled(true);
-
+        
         int filaSelecionada = jtRutas.getSelectedRow();
         if (filaSelecionada != -1) {
-            if (!jtSalida.getText().isEmpty()) {
+        if (!jtSalida.getText().isEmpty()) {
+    
+        String str = jtSalida.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime horaSalida = LocalTime.parse(str, formatter);
 
-                String str = jtSalida.getText();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                LocalTime horaSalida = LocalTime.parse(str, formatter);
+        LocalTime horaLlegada = (LocalTime) jtRutas.getValueAt(filaSelecionada, 2);
 
-                LocalTime horaLlegada = (LocalTime) jtRutas.getValueAt(filaSelecionada, 3);
+        LocalTime resultado = horaSalida.plusHours(horaLlegada.getHour())
+                .plusMinutes(horaLlegada.getMinute());
 
-                LocalTime resultado = horaSalida.plusHours(horaLlegada.getHour())
-                        .plusMinutes(horaLlegada.getMinute());
-
-                jtLlegada.setText(resultado.toString());
-
-            }
+        jtLlegada.setText(resultado.toString());
+   
+}
         }
-
-
+        
+        
+        
     }//GEN-LAST:event_jtSalidaFocusLost
 
     private void jtSalidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtSalidaKeyReleased
@@ -365,18 +369,18 @@ public class HorariosView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtSalidaKeyReleased
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-
+       
         int filaSelecionada = jtRutas.getSelectedRow();
-
         if (filaSelecionada != -1) {
 
-            Object valorCelda = jtRutas.getValueAt(filaSelecionada, 0);
+            Object valorCelda = modeloRutas.getValueAt(filaSelecionada, 0);
             int idRuta = Integer.parseInt(valorCelda.toString());
 
             ruta = rutData.buscarRutaPorId(idRuta);
-
-            if (!jtSalida.getText().isEmpty()) {
-
+            
+                
+                if (!jtSalida.getText().isEmpty()) {
+                
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
                 LocalTime horaSalida = LocalTime.parse(jtSalida.getText(), formatter);
                 LocalTime horaLlegada = LocalTime.parse(jtLlegada.getText(), formatter);
@@ -384,8 +388,12 @@ public class HorariosView extends javax.swing.JInternalFrame {
                 hor = new Horario(ruta, horaSalida, horaLlegada, true);
 
                 horData.agregarHorario(hor);
-            }
-
+                }
+                
+          
+          
+          
+          
         }
 
 
@@ -395,16 +403,11 @@ public class HorariosView extends javax.swing.JInternalFrame {
 
         jbModificar.setEnabled(true);
         jbEliminar.setEnabled(true);
-
+        
         activarPanel(false);
-
-        int filaSelecionada = jtRutas.getSelectedRow();
-        if (filaSelecionada != -1) {
-
-        } else {
-            JOptionPane.showMessageDialog(null, "El campo no puede quedar vacio");
-            return;
-        }
+        
+        
+        
     }//GEN-LAST:event_jtHorariosMouseClicked
 
     private void jtLlegadaComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jtLlegadaComponentAdded
@@ -412,53 +415,62 @@ public class HorariosView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtLlegadaComponentAdded
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-
-        int filaseleccionada = jtHorarios.getSelectedRow();
-        Object valor = jtHorarios.getValueAt(filaseleccionada, 0);        
-        int idhorario = Integer.parseInt(valor.toString());
+    
+        int filaSeleccionada = jtHorarios.getSelectedRow();
         
-        if (filaseleccionada != -1) {
-
-            horData.eliminarHorario(idhorario);
-           
+        if (filaSeleccionada!=-1) {
+        
+        Object valorCelda = modeloHorarios.getValueAt(filaSeleccionada, 0);
+        int idHorario = Integer.parseInt(valorCelda.toString());
+        
+        horData.eliminarHorario(idHorario);
+        
         }
-
-
+        
+        
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-
-        int filaderuta = jtRutas.getSelectedRow();
-        int filaseleccionada = jtHorarios.getSelectedRow();
-
-        if (filaseleccionada != -1) {
-
-            Object valorcelda = jtRutas.getValueAt(filaderuta, 0);
-            int idruta = Integer.parseInt(valorcelda.toString());
-            Ruta rutaseleccioanda = rutData.buscarRutaPorId(idruta);
-
-            Object valorid = jtHorarios.getValueAt(filaseleccionada, 0);
-            int idhorario = Integer.parseInt(valorid.toString());
-
-            Object valorsalida = jtHorarios.getValueAt(filaseleccionada, 1);
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-            LocalTime horaSalida = LocalTime.parse(valorsalida.toString(), formatter);
-
-            LocalTime horaLlegada = (LocalTime) jtRutas.getValueAt(filaderuta, 2);
-
-            LocalTime resultado = horaSalida.plusHours(horaLlegada.getHour())
-                    .plusMinutes(horaLlegada.getMinute());
-
-            Horario hormd = new Horario(idhorario, rutaseleccioanda, horaSalida, resultado, true);
-
-            horData.modificarHorario(hormd);
+      
+        int fsRuta = jtRutas.getSelectedRow();
+        int fsHora = jtHorarios.getSelectedRow();
+        if (fsHora != -1 && fsRuta!=-1) {
+        
             
-
+        Object valorCeldaH = modeloHorarios.getValueAt(fsHora, 0);
+        int idHora = Integer.parseInt(valorCeldaH.toString());    
+            
+        Object valorCeldaR = modeloRutas.getValueAt(fsRuta, 0);
+        int idRuta = Integer.parseInt(valorCeldaR.toString());
+   
+        Ruta rtaSelec = rutData.buscarRutaPorId(idRuta);
+        
+        LocalTime horaSalida=null;
+        LocalTime resultado=null;
+        
+        try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                    Object valorHora = jtHorarios.getValueAt(fsHora, 0);       
+                    String hs = valorHora.toString();
+                    horaSalida = LocalTime.parse(hs,formatter);
+                   
+                    LocalTime horaLlegada = (LocalTime) jtRutas.getValueAt(fsRuta, 2);
+                    
+                    resultado = horaSalida.plusHours(horaLlegada.getHour())
+                    .plusMinutes(horaLlegada.getMinute());
+                    
+                } catch (DateTimeParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar la duracion estimada de la forma hh:mm");
+                    return;
+                }
+        
+        hor = new Horario(idHora, rtaSelec, horaSalida, resultado, true);
+        
+        horData.modificarHorario(hor);
+        
         }
-
-
     }//GEN-LAST:event_jbModificarActionPerformed
+
 
     private void armarCabeceraTablaRutas() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
@@ -471,18 +483,27 @@ public class HorariosView extends javax.swing.JInternalFrame {
             modeloRutas.addColumn(it);
         }
         jtRutas.setModel(modeloRutas);
+        
+        TableColumnModel columnModel = jtRutas.getColumnModel();
+        TableColumn column = columnModel.getColumn(0);
+        jtRutas.removeColumn(column);
     }
-
+    
     private void armarCabeceraTablaHorarios() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
-        filaCabecera.add("Id_Horario");
+        filaCabecera.add("id_Horario");
         filaCabecera.add("Hora Salida");
         filaCabecera.add("Hora Llegada");
+        
 
         for (Object it : filaCabecera) {
             modeloHorarios.addColumn(it);
         }
         jtHorarios.setModel(modeloHorarios);
+        
+        TableColumnModel columnModel = jtHorarios.getColumnModel();
+        TableColumn column = columnModel.getColumn(0);
+        jtHorarios.removeColumn(column);
     }
 
     private void borrarFilas(DefaultTableModel modelo) {
@@ -493,41 +514,42 @@ public class HorariosView extends javax.swing.JInternalFrame {
         }
 
     }
-
+    
     private void cargarRutas(List<Ruta> rutas) {
 
         for (Ruta rut : rutas) {
-            modeloRutas.addRow(new Object[]{rut.getIdRuta(), rut.getOrigen(), rut.getDestino(), rut.getDuracionEstimada()});
+            modeloRutas.addRow(new Object[]{rut.getIdRuta(),rut.getOrigen(),rut.getDestino(),rut.getDuracionEstimada()});
         }
 
     }
-
-    private void activarPanel(boolean sino) {
-
-        jtLlegada.setEnabled(sino);
-        jtSalida.setEnabled(sino);
-        jlHorarioLLegada.setEnabled(sino);
-        jlHorarioSalida.setEnabled(sino);
-
+    private void activarPanel(boolean sino){
+        
+    jtLlegada.setEnabled(sino);
+    jtSalida.setEnabled(sino);
+    jlHorarioLLegada.setEnabled(sino);
+    jlHorarioSalida.setEnabled(sino);
+    
+    
     }
-
+    
     private void cargarHorarios() {
-
+       
         int filaSeleccionada = jtRutas.getSelectedRow();
+        
+        if (filaSeleccionada!=-1) {
+            
+        Object valorCelda = modeloRutas.getValueAt(filaSeleccionada, 0);
+        int idRuta = Integer.parseInt(valorCelda.toString());
+        
+        Ruta rtaSelec = rutData.buscarRutaPorId(idRuta);
 
-        if (filaSeleccionada != -1) {
+        listaHorarios = horData.obtenerHorariosActivos(rtaSelec.getIdRuta());
 
-            Object valorCelda = jtRutas.getValueAt(filaSeleccionada, 0);
-            int idRuta = Integer.parseInt(valorCelda.toString());
-
-            Ruta rtaSelec = rutData.buscarRutaPorId(idRuta);
-
-            listaHorarios = horData.obtenerHorariosActivos(rtaSelec.getIdRuta());
-
-            for (Horario hora : listaHorarios) {
-                modeloHorarios.addRow(new Object[]{hora.getIdHorario(), hora.getHoraSalida(), hora.getHoraLlegada()});
-            }
+        for (Horario hora : listaHorarios) {
+            modeloHorarios.addRow(new Object[]{hora.getIdHorario(),hora.getHoraSalida(), hora.getHoraLlegada()});
         }
+        }
+        
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

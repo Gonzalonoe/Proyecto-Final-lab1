@@ -129,22 +129,24 @@ public class PasajeroData {
         return pasajero;
 
     }
+    
+   
 
-    public Pasajero buscarporNombreApellido(String nombre, String apellido) {
-        String sql = "SELECT * FROM Pasajeros WHERE nombre = ? OR apellido = ? AND estado = 1";
+    public Pasajero buscarPasajeroPorID(int idPasajero) {
+        String sql = "SELECT * FROM Pasajeros WHERE id_pasajero=? AND estado = ?";
         Pasajero pasajero = null;
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre);
-            ps.setString(2, apellido);
+            ps.setInt(1, idPasajero);
+            ps.setBoolean(2, true);
             
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 pasajero = new Pasajero();
-                pasajero.setNombre(nombre);
-                pasajero.setApellido(apellido);
+                pasajero.setNombre(rs.getString("Nombre"));
+                pasajero.setApellido(rs.getString("Apellido"));
                 pasajero.setIdPasajero(rs.getInt("ID_pasajero"));
                 pasajero.setDni(rs.getInt("DNI"));
                 pasajero.setCorreo(rs.getString("Correo"));
@@ -152,7 +154,7 @@ public class PasajeroData {
                 pasajero.setEstado(rs.getBoolean("Estado"));
 
             } else {
-                JOptionPane.showInternalMessageDialog(null, "No hay pasajero con ese nombre o apellido");
+                JOptionPane.showInternalMessageDialog(null, "No hay pasajero con ese ID");
             }
             ps.close();
         } catch (SQLException ex) {

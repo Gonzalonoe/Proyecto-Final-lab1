@@ -78,7 +78,7 @@ public class ColectivoData {
             int filasEliminadas = ps.executeUpdate();
 
             if (filasEliminadas > 0) {
-                JOptionPane.showInternalConfirmDialog(null, "Colectivo Eliminado");
+                JOptionPane.showMessageDialog(null, "Colectivo Eliminado");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro Colectivo con esa Matricula");
             }
@@ -87,6 +87,8 @@ public class ColectivoData {
             JOptionPane.showMessageDialog(null, "Error no se pudo eliminar el colectivo");
         }
     }
+    
+    
 
     public Colectivo buscarColectivoMatricula(String mat) {
         String sql = "SELECT * FROM colectivos WHERE Matricula =? AND Estado=1";
@@ -149,11 +151,13 @@ public class ColectivoData {
     }
 
     public List<Colectivo> listarColectivos() {
-        String sql = "SELECT * FROM colectivos WHERE Estado=1";
+        String sql = "SELECT * FROM colectivos WHERE Estado=?";
         ArrayList<Colectivo> colectivos = new ArrayList<>();
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setBoolean(1, true);
+            
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -204,4 +208,24 @@ public class ColectivoData {
     
     };
     
+    public void eliminarColectivoCompletado(Colectivo colectivo) {
+        String sql = "UPDATE colectivos SET Estado=? WHERE Matricula=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setBoolean(1, false);
+            ps.setString(2, colectivo.getMatricula());
+            
+
+            int filasEliminadas = ps.executeUpdate();
+
+            if (filasEliminadas > 0) {
+                JOptionPane.showMessageDialog(null, "Se Completo el Colectivo correspondiente");
+            } 
+            
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error no se pudo eliminar el colectivo");
+        }
+    }
 }

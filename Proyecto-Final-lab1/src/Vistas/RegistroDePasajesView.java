@@ -5,20 +5,43 @@
 package Vistas;
 
 import AccesoADatos.PasajeData;
+import AccesoADatos.PasajeroData;
 import Entidades.Pasaje;
+import Entidades.Pasajero;
+import Entidades.Ruta;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author emanu
  */
 public class RegistroDePasajesView extends javax.swing.JInternalFrame {
-      private PasajeData PasaData = new PasajeData();
-      private Pasaje PasajeActual = null;
-    /**
-     * Creates new form RegistroDePasajesView
-     */
+      private PasajeroData pasData;
+      private PasajeData pasaData = new PasajeData();
+      private Pasaje pasajeActual = null;
+      private DefaultTableModel modelo;
+      private List<Pasaje> pasajes;
+      
     public RegistroDePasajesView() {
         initComponents();
+        
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row,int column){
+                    return false;   
+            }
+        };
+        
+        
+        pasData = new PasajeroData();
+        
+        armarCabeceraTabla();
+        jBEliminar.setEnabled(false);
     }
 
     /**
@@ -31,61 +54,22 @@ public class RegistroDePasajesView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTIdPasaje = new javax.swing.JTextField();
-        jBBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jTdnipasajero = new javax.swing.JTextField();
-        jTnombre = new javax.swing.JTextField();
-        jTapellido = new javax.swing.JTextField();
-        jTcolectiv = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTasiento = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTsalida = new javax.swing.JTextField();
-        jTllegada = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jBNuevo = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jTprecio = new javax.swing.JTextField();
         jBEliminar = new javax.swing.JButton();
+        jbBuscarDni = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtPasajes = new javax.swing.JTable();
 
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PASAJES VENDIDOS");
-
-        jLabel2.setText("ID Pasaje:");
-
-        jBBuscar.setText("Buscar");
-        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBBuscarActionPerformed(evt);
-            }
-        });
+        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.gray));
 
         jLabel3.setText("DNI Pasajero:");
 
-        jLabel4.setText("Nombre:");
-
-        jLabel5.setText("Apellido:");
-
-        jLabel6.setText("Colecivo:");
-
-        jLabel7.setText("Asiento:");
-
-        jLabel8.setText("Hora de salida:");
-
-        jLabel9.setText("Hora de llegada:");
-
-        jBNuevo.setText("Nuevo");
-        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNuevoActionPerformed(evt);
-            }
-        });
-
+        jBsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-salida-de-emergencia-48.png"))); // NOI18N
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,8 +77,7 @@ public class RegistroDePasajesView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel10.setText("Precio:");
-
+        jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-eliminar-papelera-48.png"))); // NOI18N
         jBEliminar.setText("Eliminar");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,170 +85,168 @@ public class RegistroDePasajesView extends javax.swing.JInternalFrame {
             }
         });
 
+        jbBuscarDni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-busca-mas-20.png"))); // NOI18N
+        jbBuscarDni.setText("Buscar");
+        jbBuscarDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarDniActionPerformed(evt);
+            }
+        });
+
+        jtPasajes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtPasajes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(46, 46, 46)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(43, 43, 43)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(38, 38, 38)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTprecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTnombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTcolectiv, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTsalida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel9))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTapellido)
-                                    .addComponent(jTasiento)
-                                    .addComponent(jTllegada, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTdnipasajero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                    .addComponent(jTIdPasaje, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(29, 29, 29)
-                                .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193)
+                .addComponent(jLabel3)
+                .addGap(20, 20, 20)
+                .addComponent(jTdnipasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbBuscarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(175, 175, 175)
+                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTIdPasaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTdnipasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5)
-                                .addComponent(jTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTcolectiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTasiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTsalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTllegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jTprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBNuevo)
-                            .addComponent(jBsalir)
-                            .addComponent(jBEliminar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jBBuscar)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTdnipasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscarDni))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBNuevoActionPerformed
-
-    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        
-
-    }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+
+        int filaSelecionada = jtPasajes.getSelectedRow();
+        if (filaSelecionada!=-1) {
+       
+            
+            Object idPasajeSeleccioado = jtPasajes.getModel().getValueAt(filaSelecionada, 0);
+            int idPasaje = (int) idPasajeSeleccioado;
+            
+            pasaData.eliminarPasaje(idPasaje);
+            
+            jTdnipasajero.setText("");
+            jBEliminar.setEnabled(false);
+            
+        }
         
+        borrarFilas();
+                               
     }//GEN-LAST:event_jBEliminarActionPerformed
 
-    private void limpiarCampos (){
-         
-         jTIdPasaje.setText("");
-         jTdnipasajero.setText("");
-         jTnombre.setText("");
-         jTapellido.setText("");
-         jTcolectiv.setText("");
-         jTasiento.setText("");
-         jTsalida.setText("");
-         jTllegada.setText("");
-         jTprecio.setText("");
-     }
+    private void jbBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarDniActionPerformed
+       
+        if (!jTdnipasajero.getText().isEmpty()) {
+            borrarFilas();
+        
+        int dni = Integer.parseInt(jTdnipasajero.getText());
+        
+        Pasajero pas = pasData.buscarPasajeroPorDNI(dni);
+        
+        pasajes = pasaData.buscarPasajesPorPasajero(pas);
+        
+        cargarPasajes(pasajes);
+        
+        jBEliminar.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "El campo no puede estar vacio");
+            return;
+        }
+        
+    }//GEN-LAST:event_jbBuscarDniActionPerformed
+
+    private void armarCabeceraTabla() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("ID_Ruta");
+        filaCabecera.add("Pasajero");
+        filaCabecera.add("Colectivo");
+        filaCabecera.add("Ruta");
+        filaCabecera.add("Fecha Viaje");
+        filaCabecera.add("Hora Viaje");
+        filaCabecera.add("Precio");
+        filaCabecera.add("Asiento");
+
+        for (Object it : filaCabecera) {
+            modelo.addColumn(it);
+        }
+        jtPasajes.setModel(modelo);
+        
+        TableColumnModel columnModel = jtPasajes.getColumnModel();
+        TableColumn column = columnModel.getColumn(0);
+        jtPasajes.removeColumn(column);
+
+    }
+    
+    private void cargarPasajes(List<Pasaje> pasajes) {
+
+        for (Pasaje pas : pasajes) {
+            modelo.addRow(new Object[]{pas.getIdPasaje(),pas.getPasajero(),
+                pas.getColectivo(),pas.getRuta(),pas.getFechaViaje(),pas.getHoraViaje(),pas.getPrecio(),pas.getAsiento()});
+            
+        }
+
+    }
+    
+    private void borrarFilas() {
+        int indice = modelo.getRowCount() - 1;
+
+        for (int i = indice; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jBsalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTIdPasaje;
-    private javax.swing.JTextField jTapellido;
-    private javax.swing.JTextField jTasiento;
-    private javax.swing.JTextField jTcolectiv;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTdnipasajero;
-    private javax.swing.JTextField jTllegada;
-    private javax.swing.JTextField jTnombre;
-    private javax.swing.JTextField jTprecio;
-    private javax.swing.JTextField jTsalida;
+    private javax.swing.JButton jbBuscarDni;
+    private javax.swing.JTable jtPasajes;
     // End of variables declaration//GEN-END:variables
 }
