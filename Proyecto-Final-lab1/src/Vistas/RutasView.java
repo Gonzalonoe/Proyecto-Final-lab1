@@ -94,6 +94,7 @@ public class RutasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jbModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-editar-propiedad-48.png"))); // NOI18N
         jbModificar.setText("Modificar");
         jbModificar.setEnabled(false);
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +103,7 @@ public class RutasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jbEliminarRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-eliminar-papelera-48.png"))); // NOI18N
         jbEliminarRuta.setText("Eliminar");
         jbEliminarRuta.setEnabled(false);
         jbEliminarRuta.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +112,7 @@ public class RutasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jbGuardarRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-hoja-48.png"))); // NOI18N
         jbGuardarRuta.setText("Guardar");
         jbGuardarRuta.setEnabled(false);
         jbGuardarRuta.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +121,7 @@ public class RutasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-salida-de-emergencia-48.png"))); // NOI18N
         jButton4.setText("Salir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
