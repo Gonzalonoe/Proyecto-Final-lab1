@@ -295,12 +295,12 @@ public class PasajeroView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jTFdniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFdniFocusLost
-        Pattern p=Pattern.compile("^[+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?$");
-        Matcher m=p.matcher(jTFdni.getText());
-        if(!m.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
-            jTFdni.requestFocus();
-        }
+    //    Pattern p=Pattern.compile("^[+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?$");
+    //    Matcher m=p.matcher(jTFdni.getText());
+    //    if(!m.matches()){
+    //        JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
+    //        jTFdni.requestFocus();
+    //    }
     }//GEN-LAST:event_jTFdniFocusLost
 
     private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
@@ -331,12 +331,12 @@ public class PasajeroView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTFCorreoFocusLost
 
     private void jTFTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTelefonoFocusLost
-        Pattern p=Pattern.compile("^[+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?$");
-        Matcher m=p.matcher(jTFTelefono.getText());
-        if(!m.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
-            jTFTelefono.requestFocus();
-        }
+    //    Pattern p=Pattern.compile("^[+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?$");
+    //    Matcher m=p.matcher(jTFTelefono.getText());
+    //    if(!m.matches()){
+    //        JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
+    //        jTFTelefono.requestFocus();
+    //    }
     }//GEN-LAST:event_jTFTelefonoFocusLost
 
     private void limpiarCampos (){
