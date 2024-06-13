@@ -437,24 +437,25 @@ public class HorariosView extends javax.swing.JInternalFrame {
             Ruta rtaSelec = rutData.buscarRutaPorId(idRuta);
 
             LocalTime horaSalida = null;
-            LocalTime resultado = null;
             LocalTime horaLlegada = null;
+
             try {
-
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                Object valorHora = jtHorarios.getValueAt(fsHora, 0);
+                String hs = valorHora.toString();
+                horaSalida = LocalTime.parse(hs, formatter);
 
-                horaSalida = (LocalTime) jtHorarios.getValueAt(fsHora, 1);
+                LocalTime tiempoEstimado = (LocalTime) jtRutas.getValueAt(fsRuta, 2);
 
-                horaLlegada = (LocalTime) jtRutas.getValueAt(fsRuta, 2);
-
-                resultado = horaSalida.plusHours(horaLlegada.getHour()).plusMinutes(horaLlegada.getMinute());
+                horaLlegada = horaSalida.plusHours(tiempoEstimado.getHour())
+                        .plusMinutes(tiempoEstimado.getMinute());
 
             } catch (DateTimeParseException ex) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar la duracion estimada de la forma hh:mm");
                 return;
             }
 
-            hor = new Horario(idHora, rtaSelec, horaSalida, resultado, true);
+            hor = new Horario(idHora, rtaSelec, horaSalida, horaLlegada, true);
 
             horData.modificarHorario(hor);
 
