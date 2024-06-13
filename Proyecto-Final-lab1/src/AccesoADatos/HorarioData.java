@@ -56,8 +56,8 @@ public class HorarioData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setTime(2, Time.valueOf(horario.getHoraSalida()));
-            ps.setTime(3, Time.valueOf(horario.getHoraLlegada()));
+            ps.setTime(1, Time.valueOf(horario.getHoraSalida()));
+            ps.setTime(2, Time.valueOf(horario.getHoraLlegada()));
 
             ps.setInt(3, horario.getIdHorario());
 
