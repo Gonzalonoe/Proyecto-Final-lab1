@@ -185,6 +185,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFdni">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFdniFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -207,10 +210,19 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNombre">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFNombreFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFApellido">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFApellidoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFCorreo">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFCorreoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBNuevo">
           <Properties>
@@ -250,6 +262,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFTelefono">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFTelefonoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton1">
         </Component>

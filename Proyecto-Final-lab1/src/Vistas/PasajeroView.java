@@ -7,6 +7,8 @@ package Vistas;
 
 import AccesoADatos.PasajeroData;
 import Entidades.Pasajero;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -60,6 +62,12 @@ public class PasajeroView extends javax.swing.JInternalFrame {
             }
         });
 
+        jTFdni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFdniFocusLost(evt);
+            }
+        });
+
         jLabel3.setText("Nombre:");
 
         jLabel4.setText("Apellido:");
@@ -67,6 +75,24 @@ public class PasajeroView extends javax.swing.JInternalFrame {
         jLabel5.setText("Correo:");
 
         jLabel6.setText("Telefono:");
+
+        jTFNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFNombreFocusLost(evt);
+            }
+        });
+
+        jTFApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFApellidoFocusLost(evt);
+            }
+        });
+
+        jTFCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFCorreoFocusLost(evt);
+            }
+        });
 
         jBNuevo.setText("Nuevo");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +123,12 @@ public class PasajeroView extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Estado:");
+
+        jTFTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFTelefonoFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -266,6 +298,51 @@ public class PasajeroView extends javax.swing.JInternalFrame {
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jTFdniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFdniFocusLost
+        Pattern p=Pattern.compile("^[+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?$");
+        Matcher m=p.matcher(jTFdni.getText());
+        if(!m.matches()){
+            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
+            jTFdni.requestFocus();
+        }
+    }//GEN-LAST:event_jTFdniFocusLost
+
+    private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
+    //    Pattern p=Pattern.compile("[a-zA-Z]");
+    //    Matcher m=p.matcher(jTFNombre.getText());
+    //    if(!m.matches()){
+    //        JOptionPane.showMessageDialog(this, "Ustede debe ing. un nombre valido");
+    //        jTFNombre.requestFocus();
+    //    }
+    }//GEN-LAST:event_jTFNombreFocusLost
+
+    private void jTFApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidoFocusLost
+    //    Pattern p=Pattern.compile("[a-zA-Z]");
+    //    Matcher m=p.matcher(jTFApellido.getText());
+    //    if(!m.matches()){
+    //        JOptionPane.showMessageDialog(this, "Ustede debe ing. un nombre valido");
+    //        jTFApellido.requestFocus();
+    //    }
+    }//GEN-LAST:event_jTFApellidoFocusLost
+
+    private void jTFCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCorreoFocusLost
+    //    Pattern p=Pattern.compile("\"[^@]+@[^@]+\\\\.[a-zA-Z]{2,}\"");
+    //    Matcher m=p.matcher(jTFCorreo.getText());
+    //    if(!m.matches()){
+    //        JOptionPane.showMessageDialog(this, "Ustede debe ing. un nombre valido");
+    //        jTFCorreo.requestFocus();
+    //    }
+    }//GEN-LAST:event_jTFCorreoFocusLost
+
+    private void jTFTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTelefonoFocusLost
+        Pattern p=Pattern.compile("^[+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?$");
+        Matcher m=p.matcher(jTFTelefono.getText());
+        if(!m.matches()){
+            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
+            jTFTelefono.requestFocus();
+        }
+    }//GEN-LAST:event_jTFTelefonoFocusLost
 
     private void limpiarCampos (){
          
